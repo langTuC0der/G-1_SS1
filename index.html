@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khóa học Lập trình Lớp 7 — Cổng Bài học & Design System</title>
+  
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="design-system/css/tokens.css">
+  <link rel="stylesheet" href="design-system/css/reset.css">
+  <link rel="stylesheet" href="design-system/css/layout.css">
+  <link rel="stylesheet" href="design-system/css/components.css">
+  <link rel="stylesheet" href="design-system/css/utilities.css">
+  <link rel="stylesheet" href="design-system/css/responsive.css">
+
+  <style>
+    .hub-hero {
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .hub-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      color: inherit;
+    }
+    .hub-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: rgba(79, 70, 229, 0.4);
+    }
+    .hub-card__icon {
+      font-size: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="lesson-shell" style="max-width: 1080px;">
+
+    <!-- Hero Header -->
+    <header class="hub-hero">
+      <div class="d-inline-flex items-center gap-2 mb-2">
+        <span class="badge badge--primary">Khóa học 36 Tuần · 72 Buổi</span>
+        <span class="badge badge--energy">Online 1:1</span>
+      </div>
+      <h1 style="font-size: clamp(2rem, 4vw, 2.75rem); letter-spacing: -0.03em; margin-bottom: 8px;">
+        Hệ thống Bài giảng Learning Page
+      </h1>
+      <p class="text-secondary" style="font-size: 1.15rem; max-width: 640px; margin: 0 auto;">
+        Giao diện bài học tương tác phong cách <strong>Bright & Friendly Modern Edu</strong>, tối ưu chia đôi màn hình và tạo động lực học tập cho học sinh lớp 7.
+      </p>
+
+      <div class="d-flex justify-center gap-3 mt-4">
+        <a href="design-system/styleguide.html" class="btn btn--secondary">
+          🎨 Xem Component Styleguide
+        </a>
+        <a href="templates/lesson.html?id=gd1-w01-l01" class="btn btn--primary">
+          🚀 Mở Bài học Buổi 01
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Stages / Sessions -->
+    <main class="mt-5">
+      <div class="d-flex justify-between items-center mb-3">
+        <div>
+          <h2>Giai đoạn 1: Nhập môn máy tính</h2>
+          <p class="text-secondary" style="margin: 0; font-size: 0.95rem;">4 tuần · 8 buổi · Sử dụng máy tính cơ bản, đúng thao tác và an toàn</p>
+        </div>
+        <span class="badge badge--success font-semibold">Tuần 01 – 04</span>
+      </div>
+
+      <div class="hub-grid">
+        
+        <!-- Buổi 01 -->
+        <a href="templates/lesson.html?id=gd1-w01-l01" class="hub-card">
+          <div>
+            <div class="d-flex justify-between items-center mb-2">
+              <span class="badge badge--primary">Tuần 01 · Buổi 1</span>
+              <span class="badge badge--warning">⭐ 100 XP</span>
+            </div>
+            <div class="hub-card__icon mb-2">🖥️</div>
+            <h3 style="margin-bottom: 6px;">Làm quen với máy tính</h3>
+            <p class="text-secondary" style="font-size: 0.9rem; margin: 0;">Desktop, thanh tác vụ, cửa sổ ứng dụng và cách bật/tắt máy đúng chuẩn an toàn.</p>
+          </div>
+          <div class="d-flex justify-between items-center text-primary font-semibold" style="font-size: 0.875rem;">
+            <span>Vào học ngay</span>
+            <span>➔</span>
+          </div>
+        </a>
+
+        <!-- Buổi 02 -->
+        <a href="templates/lesson.html?id=gd1-w01-l02" class="hub-card">
+          <div>
+            <div class="d-flex justify-between items-center mb-2">
+              <span class="badge badge--energy">Tuần 01 · Buổi 2</span>
+              <span class="badge badge--warning">⭐ 100 XP</span>
+            </div>
+            <div class="hub-card__icon mb-2">🖱️</div>
+            <h3 style="margin-bottom: 6px;">Chuột & thao tác cơ bản</h3>
+            <p class="text-secondary" style="font-size: 0.9rem; margin: 0;">Làm chủ click, double click, chuột phải và thao tác kéo thả (drag & drop) với mini game.</p>
+          </div>
+          <div class="d-flex justify-between items-center text-primary font-semibold" style="font-size: 0.875rem;">
+            <span>Vào học ngay</span>
+            <span>➔</span>
+          </div>
+        </a>
+
+        <!-- Buổi 03 Preview -->
+        <div class="hub-card" style="opacity: 0.75; cursor: default;">
+          <div>
+            <div class="d-flex justify-between items-center mb-2">
+              <span class="badge badge--secondary">Tuần 02 · Buổi 3</span>
+              <span class="badge badge--warning">⭐ 100 XP</span>
+            </div>
+            <div class="hub-card__icon mb-2">⌨️</div>
+            <h3 style="margin-bottom: 6px;">Bàn phím & gõ văn bản</h3>
+            <p class="text-secondary" style="font-size: 0.9rem; margin: 0;">Phím chữ, phím số, các phím điều khiển và thử thách gõ đoạn giới thiệu bản thân.</p>
+          </div>
+          <div class="text-muted font-semibold" style="font-size: 0.85rem;">
+            <span>Sắp ra mắt</span>
+          </div>
+        </div>
+
+        <!-- Buổi 04 Preview -->
+        <div class="hub-card" style="opacity: 0.75; cursor: default;">
+          <div>
+            <div class="d-flex justify-between items-center mb-2">
+              <span class="badge badge--secondary">Tuần 02 · Buổi 4</span>
+              <span class="badge badge--warning">⭐ 100 XP</span>
+            </div>
+            <div class="hub-card__icon mb-2">⚡</div>
+            <h3 style="margin-bottom: 6px;">Phím tắt hữu ích</h3>
+            <p class="text-secondary" style="font-size: 0.9rem; margin: 0;">Copy, Paste, Undo, Select All và thử thách thao tác nhanh không dùng chuột.</p>
+          </div>
+          <div class="text-muted font-semibold" style="font-size: 0.85rem;">
+            <span>Sắp ra mắt</span>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border-soft); text-align: center;" class="text-muted">
+      <p style="font-size: 0.9rem;">Khóa học Lập trình Lớp 7 · Kiến trúc Data-Driven Vanilla HTML5/CSS/JS · Mở trực tiếp trên trình duyệt</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

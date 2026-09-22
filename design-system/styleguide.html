@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System & Component Styleguide — Bright & Friendly Modern Edu</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  
+  <style>
+    .styleguide-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 12px 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+    .styleguide-section {
+      margin: 48px 0;
+      scroll-margin-top: 80px;
+    }
+    .component-box {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .code-preview {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Styleguide Nav -->
+  <nav class="styleguide-nav">
+    <div class="d-flex items-center gap-3">
+      <span style="font-size: 1.5rem;">🎨</span>
+      <div>
+        <strong style="font-size: 1.1rem;">Bright & Friendly Styleguide</strong>
+        <p class="text-secondary" style="font-size: 0.8rem; margin: 0;">Component Library dùng chung cho khóa học 36 tuần</p>
+      </div>
+    </div>
+    <div class="d-flex items-center gap-2">
+      <button class="sound-toggle-btn" onclick="window.SoundManager.toggleMute()">🔊 Âm thanh: Bật</button>
+      <a href="../templates/lesson.html?id=gd1-w01-l01" class="btn btn--primary btn--sm">🚀 Mở Lesson Mẫu</a>
+    </div>
+  </nav>
+
+  <div class="lesson-shell" style="max-width: 1000px; padding-top: 24px;">
+
+    <!-- 0. Design Tokens Preview -->
+    <section class="styleguide-section">
+      <h2>1. Bảng màu & Design Tokens</h2>
+      <p class="text-secondary">Màu sắc tươi sáng, độ tương phản cao, dịu mắt cho học sinh lớp 7.</p>
+      <div class="component-box">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
+          <div style="background: var(--color-primary); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Primary<br>#4F46E5</div>
+          <div style="background: var(--color-success); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Success<br>#10B981</div>
+          <div style="background: var(--color-energy); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Energy<br>#0EA5E9</div>
+          <div style="background: var(--color-warning); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Warning<br>#F59E0B</div>
+          <div style="background: var(--color-danger); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Danger/Boss<br>#F43F5E</div>
+          <div style="background: var(--color-purple); color: #fff; padding: 16px; border-radius: 12px; text-align: center; font-weight: 700; font-size: 0.85rem;">Purple/Quiz<br>#8B5CF6</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Header & Mission Bar -->
+    <section class="styleguide-section">
+      <h2>2. Header & Sticky Mission Bar</h2>
+      <p class="text-secondary">Luôn ghim ở đầu màn hình, hiển thị tiến trình 4 chặng của buổi học 90 phút.</p>
+      
+      <div class="component-box">
+        <!-- Sample Header -->
+        <header class="lesson-header" style="padding: 0 0 16px;">
+          <div class="lesson-header__meta">
+            <span class="badge badge--primary">GĐ1: Nhập môn máy tính</span>
+            <span class="badge badge--energy">Tuần 01 · Buổi 01</span>
+            <span class="badge badge--warning">⏱ 90 phút</span>
+          </div>
+          <h1 class="lesson-header__title">Làm quen với máy tính</h1>
+          <p class="lesson-header__subtitle">Desktop, cửa sổ ứng dụng và nguyên tắc an toàn khi sử dụng</p>
+        </header>
+
+        <!-- Mission Bar Component -->
+        <nav class="mission-bar">
+          <div class="mission-bar__nav">
+            <a href="#warmup" class="mission-step is-completed">✓ 01. Khởi động 🚀</a>
+            <a href="#concept" class="mission-step is-active">02. Khám phá 🔍</a>
+            <a href="#lab" class="mission-step">03. Thực chiến 💻</a>
+            <a href="#boss" class="mission-step">04. Thử thách Boss 🏆</a>
+          </div>
+          <div class="mission-bar__actions">
+            <div class="xp-badge">⭐ <span class="xp-count">75</span> XP</div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 2. Card System Variants -->
+    <section class="styleguide-section">
+      <h2>3. Hệ thống Thẻ Học tập (Card System)</h2>
+      <p class="text-secondary">Các biến thể thẻ bài học, thực hành, quiz và boss challenge.</p>
+      
+      <div class="d-flex flex-column gap-3 mt-3">
+        <!-- Concept Card -->
+        <div class="edu-card edu-card--concept">
+          <div class="edu-card__header">
+            <div class="edu-card__icon">💡</div>
+            <div class="edu-card__title-group">
+              <span class="eyebrow">Khám phá kiến thức</span>
+              <h3>Desktop và Cửa sổ ứng dụng là gì?</h3>
+            </div>
+            <span class="badge badge--primary">Trọng tâm</span>
+          </div>
+          <p>Desktop là bàn làm việc chính của máy tính. Mỗi chương trình khi mở ra sẽ xuất hiện trong một chiếc <strong>Cửa sổ (Window)</strong> riêng biệt.</p>
+          <div class="concept-chip-group">
+            <span class="concept-chip">🗂 Desktop</span>
+            <span class="concept-chip">🪟 Cửa sổ (Window)</span>
+            <span class="concept-chip">➖ Minimize</span>
+            <span class="concept-chip">✖️ Close</span>
+          </div>
+        </div>
+
+        <!-- Lab Card -->
+        <div class="edu-card edu-card--lab">
+          <div class="edu-card__header">
+            <div class="edu-card__icon">💻</div>
+            <div class="edu-card__title-group">
+              <span class="eyebrow">Thực hành tại lớp</span>
+              <h3>Nhiệm vụ: Mở và điều khiển 3 ứng dụng</h3>
+            </div>
+            <span class="badge badge--energy">Level 2</span>
+          </div>
+          <div class="lab-steps">
+            <div class="lab-step" data-state="done">
+              <div class="lab-step__number">✓</div>
+              <div class="lab-step__content">
+                <h4>Bước 1: Bật máy tính và đăng nhập</h4>
+                <p>Khởi động đúng quy trình, kiểm tra màn hình Desktop.</p>
+              </div>
+            </div>
+            <div class="lab-step" data-state="active">
+              <div class="lab-step__number">2</div>
+              <div class="lab-step__content">
+                <h4>Bước 2: Mở lần lượt Chrome, Notepad và Calculator</h4>
+                <p>Nhấp đúp chuột vào biểu tượng trên màn hình hoặc tìm kiếm qua Start Menu.</p>
+              </div>
+            </div>
+            <div class="lab-step" data-state="pending">
+              <div class="lab-step__number">3</div>
+              <div class="lab-step__content">
+                <h4>Bước 3: Chuyển đổi và thu nhỏ cửa sổ</h4>
+                <p>Dùng phím Alt + Tab hoặc thanh Taskbar để chuyển qua lại.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Hint Box -->
+          <details class="hint-box">
+            <summary>💡 Gợi ý khi chưa tìm thấy Calculator</summary>
+            <div class="hint-box__body">
+              Em hãy nhấn phím <kbd class="keycap">Win</kbd> trên bàn phím, gõ chữ <code>calc</code> rồi nhấn phím <kbd class="keycap">Enter</kbd> nhé!
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Keycaps & Mouse Visualizer -->
+    <section class="styleguide-section">
+      <h2>4. Bàn phím 3D & Chuột trực quan tương tác</h2>
+      <p class="text-secondary">Học sinh click chuột hoặc bấm phím thật trên bàn phím để phím ảo phản hồi nảy và sáng đèn.</p>
+      
+      <div class="component-box">
+        <h4 class="mb-2">⌨️ Phím 3D phản hồi xúc giác (Click thử hoặc gõ phím trên máy bạn):</h4>
+        <div class="keycap-showcase">
+          <kbd class="keycap" data-key="ctrl">Ctrl</kbd>
+          <span class="key-plus">+</span>
+          <kbd class="keycap" data-key="c">C</kbd>
+          <span style="margin: 0 12px; color: var(--text-muted);">|</span>
+          <kbd class="keycap" data-key="ctrl">Ctrl</kbd>
+          <span class="key-plus">+</span>
+          <kbd class="keycap" data-key="v">V</kbd>
+          <span style="margin: 0 12px; color: var(--text-muted);">|</span>
+          <kbd class="keycap" data-key="alt">Alt</kbd>
+          <span class="key-plus">+</span>
+          <kbd class="keycap" data-key="tab">Tab</kbd>
+          <span style="margin: 0 12px; color: var(--text-muted);">|</span>
+          <kbd class="keycap" data-key="enter">Enter</kbd>
+          <kbd class="keycap" data-key="space">Space</kbd>
+        </div>
+
+        <h4 class="mt-4 mb-2">🖱 Mô phỏng chuột 3 nút (Click chuột trái, phải hoặc con lăn):</h4>
+        <div class="mouse-visualizer-container">
+          <div class="mouse-device">
+            <div class="mouse-buttons-row">
+              <button class="mouse-zone" data-mouse="left">TRÁI</button>
+              <button class="mouse-zone" data-mouse="scroll"></button>
+              <button class="mouse-zone" data-mouse="right">PHẢI</button>
+            </div>
+          </div>
+          <div class="mouse-legend">
+            <div class="mouse-legend-item">
+              <span class="mouse-legend-dot" style="background: var(--color-primary);"></span>
+              <strong>Chuột trái:</strong> Chọn, click đúp để mở, kéo thả
+            </div>
+            <div class="mouse-legend-item">
+              <span class="mouse-legend-dot" style="background: var(--color-energy);"></span>
+              <strong>Con lăn:</strong> Cuộn trang lên / xuống
+            </div>
+            <div class="mouse-legend-item">
+              <span class="mouse-legend-dot" style="background: var(--color-purple);"></span>
+              <strong>Chuột phải:</strong> Mở bảng menu tùy chọn (Context Menu)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Interactive Checklist -->
+    <section class="styleguide-section">
+      <h2>5. Danh sách Tích điểm (Interactive Checklist)</h2>
+      <p class="text-secondary">Tích chọn để nhận XP và tăng tiến độ thanh Progress Bar (tự lưu vào localStorage).</p>
+      
+      <div class="component-box">
+        <div class="progress-container">
+          <div class="progress-header">
+            <span>Tiến độ hoàn thành nhiệm vụ</span>
+            <span class="progress-text">0/4 (0%)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="checklist-group">
+          <div class="checklist-item" data-id="demo_task_1" data-xp="10">
+            <div class="checklist-box"></div>
+            <span class="checklist-label">Biết cách bật và tắt máy tính an toàn</span>
+            <span class="checklist-reward">+10 XP</span>
+          </div>
+          <div class="checklist-item" data-id="demo_task_2" data-xp="10">
+            <div class="checklist-box"></div>
+            <span class="checklist-label">Phân biệt được nút Thu nhỏ (Minimize) và Đóng (Close)</span>
+            <span class="checklist-reward">+10 XP</span>
+          </div>
+          <div class="checklist-item" data-id="demo_task_3" data-xp="10">
+            <div class="checklist-box"></div>
+            <span class="checklist-label">Mở thành công 3 ứng dụng cùng lúc</span>
+            <span class="checklist-reward">+10 XP</span>
+          </div>
+          <div class="checklist-item" data-id="demo_task_4" data-xp="15">
+            <div class="checklist-box"></div>
+            <span class="checklist-label">Chuyển đổi mượt mà giữa các cửa sổ không cần chuột</span>
+            <span class="checklist-reward">+15 XP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Interactive Quiz -->
+    <section class="styleguide-section">
+      <h2>6. Trắc nghiệm Nhanh (Interactive Quiz)</h2>
+      <p class="text-secondary">Phản hồi tức thì: Đúng nhận quà 🎉, sai có gợi ý 💡 để chọn lại.</p>
+      
+      <div class="component-box">
+        <div class="quiz-box" data-qid="demo_quiz_1" data-correct="1" data-hint="Nút Close thường có hình chữ X màu đỏ ở góc trên bên phải cửa sổ.">
+          <div class="quiz-question">Câu hỏi: Để đóng hoàn toàn một cửa sổ ứng dụng, em nhấn vào biểu tượng nào?</div>
+          <div class="quiz-options">
+            <button class="quiz-option"><span>A.</span> Dấu trừ (—) ở góc trên</button>
+            <button class="quiz-option"><span>B.</span> Dấu nhân (✖) ở góc trên bên phải</button>
+            <button class="quiz-option"><span>C.</span> Biểu tượng hai ô vuông lồng nhau</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Boss Challenge & Timer -->
+    <section class="styleguide-section">
+      <h2>7. Thử thách Boss & Đồng hồ đếm ngược (Timer)</h2>
+      <p class="text-secondary">Trạng thái: Idle, Running, Paused, Warning (dưới 60s), Finished.</p>
+      
+      <div class="edu-card edu-card--boss">
+        <div class="edu-card__header">
+          <div class="edu-card__icon">🏆</div>
+          <div class="edu-card__title-group">
+            <span class="eyebrow">Boss Challenge cuối buổi</span>
+            <h3>Thử thách 5 phút: Tự điều khiển 3 ứng dụng</h3>
+          </div>
+          <span class="badge badge--danger">Thưởng 30 XP</span>
+        </div>
+
+        <div class="boss-banner timer-widget" data-duration="180">
+          <div>
+            <span class="text-secondary font-semibold" style="font-size: 0.9rem;">Thời gian còn lại:</span>
+            <div class="timer-display">03:00</div>
+          </div>
+          <div class="timer-controls">
+            <button class="btn btn--primary" data-timer-action="start">▶ Bắt đầu</button>
+            <button class="btn btn--secondary" data-timer-action="pause" disabled>⏸ Tạm dừng</button>
+            <button class="btn btn--secondary" data-timer-action="reset">🔄 Đặt lại</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Button States -->
+    <section class="styleguide-section">
+      <h2>8. Trạng thái Nút bấm (Button States)</h2>
+      <div class="component-box">
+        <div class="d-flex flex-wrap gap-3 items-center">
+          <button class="btn btn--primary">Primary Default</button>
+          <button class="btn btn--secondary">Secondary</button>
+          <button class="btn btn--success">Success</button>
+          <button class="btn btn--danger">Danger</button>
+          <button class="btn btn--primary" disabled>Disabled State</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Cheatsheet Floating Action Button -->
+  <button class="cheatsheet-fab" aria-label="Mở sổ tay tra cứu nhanh" title="Sổ tay phím tắt">
+    📘
+  </button>
+
+  <!-- Cheatsheet Slide-over Drawer -->
+  <div class="cheatsheet-drawer-backdrop">
+    <div class="cheatsheet-drawer">
+      <div class="cheatsheet-drawer__header">
+        <div class="d-flex items-center gap-2">
+          <span style="font-size: 1.4rem;">📘</span>
+          <strong>Sổ tay tra cứu nhanh</strong>
+        </div>
+        <button class="cheatsheet-close-btn btn btn--secondary btn--sm" aria-label="Đóng sổ tay">✕</button>
+      </div>
+      <div class="cheatsheet-drawer__body">
+        <div>
+          <h4 class="mb-2">⌨️ Phím tắt buổi 1</h4>
+          <div class="d-flex flex-column gap-2">
+            <div class="d-flex justify-between items-center p-2 bg-page-secondary rounded">
+              <span class="key-combo"><kbd class="keycap">Alt</kbd><span class="key-plus">+</span><kbd class="keycap">Tab</kbd></span>
+              <span class="text-secondary" style="font-size: 0.85rem;">Chuyển cửa sổ</span>
+            </div>
+            <div class="d-flex justify-between items-center p-2 bg-page-secondary rounded">
+              <span class="key-combo"><kbd class="keycap">Win</kbd><span class="key-plus">+</span><kbd class="keycap">D</kbd></span>
+              <span class="text-secondary" style="font-size: 0.85rem;">Về Desktop</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="mb-2">💡 Mẹo xử lý nhanh</h4>
+          <p class="text-secondary" style="font-size: 0.9rem;">Nếu chuột bị kẹt hoặc đơ cửa sổ, hãy bấm <kbd class="keycap">Alt</kbd> + <kbd class="keycap">F4</kbd> để đóng nhanh ứng dụng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/visualizers.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/checklist.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/learning-engine.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.LearningEngine.init();
+    });
+  </script>
+</body>
+</html>

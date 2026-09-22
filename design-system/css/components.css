@@ -1,0 +1,1993 @@
+/**
+ * COMPONENT SYSTEM — Bright & Friendly Modern Edu
+ */
+
+/* ==========================================================================
+   1. MISSION BAR (Thanh lộ trình bài học dính phía trên)
+   ========================================================================== */
+.mission-bar {
+  position: sticky;
+  top: 12px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.mission-bar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mission-bar__nav::-webkit-scrollbar {
+  display: none;
+}
+
+.mission-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.mission-step:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.mission-step.is-active {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: 0 1px 3px rgba(79, 70, 229, 0.1);
+}
+
+.mission-step.is-completed {
+  color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.mission-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   2. CARD SYSTEM (Khối thẻ giao diện đa năng)
+   ========================================================================== */
+.edu-card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 24px;
+  position: relative;
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.edu-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Biến thể theo chủ đề học tập */
+.edu-card--concept {
+  border-left: 4px solid var(--color-primary);
+}
+
+.edu-card--lab {
+  border-left: 4px solid var(--color-energy);
+}
+
+.edu-card--quiz {
+  border-left: 4px solid var(--color-purple);
+}
+
+.edu-card--success {
+  border-left: 4px solid var(--color-success);
+  background: linear-gradient(180deg, rgba(236, 253, 245, 0.5) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.edu-card--warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.edu-card--boss {
+  border: 2px solid rgba(244, 63, 94, 0.3);
+  border-left: 6px solid var(--color-danger);
+  background: linear-gradient(180deg, rgba(255, 241, 242, 0.5) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+/* Header bên trong card */
+.edu-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.edu-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.edu-card--lab .edu-card__icon {
+  background: var(--color-energy-light);
+  color: var(--color-energy);
+}
+
+.edu-card--quiz .edu-card__icon {
+  background: var(--color-purple-light);
+  color: var(--color-purple);
+}
+
+.edu-card--boss .edu-card__icon {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.edu-card__title-group {
+  flex: 1;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: 2px;
+}
+
+.edu-card--lab .eyebrow { color: var(--color-energy); }
+.edu-card--quiz .eyebrow { color: var(--color-purple); }
+.edu-card--boss .eyebrow { color: var(--color-danger); }
+
+/* ==========================================================================
+   3. CONCEPT CARD ELEMENTS & CHIPS
+   ========================================================================== */
+.concept-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.concept-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   4. LAB STEPS (Khối thực hành từng bước có số thứ tự)
+   ========================================================================== */
+.lab-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.lab-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.lab-step[data-state="pending"] {
+  opacity: 0.85;
+}
+
+.lab-step[data-state="active"] {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.12);
+}
+
+.lab-step[data-state="done"] {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: var(--color-success-light);
+}
+
+.lab-step__number {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  background: var(--bg-page-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-soft);
+  transition: all var(--transition-fast);
+}
+
+.lab-step[data-state="active"] .lab-step__number {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.lab-step[data-state="done"] .lab-step__number {
+  background: var(--color-success);
+  color: #ffffff;
+  border-color: var(--color-success);
+}
+
+.lab-step__content {
+  flex: 1;
+}
+
+.lab-step__content h4 {
+  font-size: 1rem;
+  margin-bottom: 2px;
+}
+
+.lab-step__content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   5. HINT BOX (Hộp gợi ý mở rộng accordion)
+   ========================================================================== */
+.hint-box {
+  margin: var(--space-3) 0;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: var(--color-warning-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.hint-box summary {
+  padding: 10px 16px;
+  font-weight: 600;
+  color: #92400e;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.hint-box summary::-webkit-details-marker {
+  display: none;
+}
+
+.hint-box summary::after {
+  content: "▾";
+  margin-left: auto;
+  font-size: 1rem;
+  transition: transform var(--transition-fast);
+}
+
+.hint-box[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.hint-box__body {
+  padding: 0 16px 14px;
+  font-size: 0.925rem;
+  color: #78350f;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   6. 3D KEYCAP & BÀN PHÍM TƯƠNG TÁC
+   ========================================================================== */
+.keycap-showcase {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+}
+
+.keycap {
+  min-width: 48px;
+  padding: 8px 14px;
+  background: linear-gradient(#ffffff, #f1f5f9);
+  border: 1px solid #cbd5e1;
+  border-bottom: 4px solid #94a3b8;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.08s ease, border-bottom-width 0.08s ease, background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keycap:hover {
+  background: linear-gradient(#ffffff, #e2e8f0);
+}
+
+.keycap:active,
+.keycap.is-pressed {
+  transform: translateY(3px);
+  border-bottom-width: 1px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.key-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.key-plus {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   7. MOUSE VISUALIZER (Mô phỏng chuột trực quan)
+   ========================================================================== */
+.mouse-visualizer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.mouse-device {
+  width: 120px;
+  height: 180px;
+  background: #f8fafc;
+  border: 3px solid #cbd5e1;
+  border-radius: 60px 60px 50px 50px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  user-select: none;
+}
+
+.mouse-buttons-row {
+  display: flex;
+  height: 75px;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.mouse-zone {
+  flex: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-height: unset;
+}
+
+.mouse-zone[data-mouse="left"] {
+  border-right: 1px solid #cbd5e1;
+  border-top-left-radius: 56px;
+}
+
+.mouse-zone[data-mouse="right"] {
+  border-left: 1px solid #cbd5e1;
+  border-top-right-radius: 56px;
+}
+
+.mouse-zone[data-mouse="scroll"] {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 38px;
+  background: #ffffff;
+  border: 2px solid #94a3b8;
+  border-radius: 10px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.mouse-zone:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.mouse-zone.is-active {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(79, 70, 229, 0.4);
+}
+
+.mouse-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mouse-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.mouse-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   8. INTERACTIVE CHECKLIST (Danh sách tích điểm)
+   ========================================================================== */
+.checklist-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+}
+
+.checklist-item:hover {
+  background: var(--color-success-light);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.checklist-item.is-checked {
+  background: var(--color-success-light);
+  border-color: var(--color-success);
+}
+
+.checklist-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  background: #ffffff;
+}
+
+.checklist-item.is-checked .checklist-box {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: #ffffff;
+}
+
+.checklist-box::after {
+  content: "✓";
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--transition-fast);
+}
+
+.checklist-item.is-checked .checklist-box::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checklist-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.checklist-item.is-checked .checklist-label {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.checklist-reward {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-warning);
+  background: var(--color-warning-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   9. PROGRESS BAR & XP COMPONENT
+   ========================================================================== */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: var(--space-2) 0;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.progress-track {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-energy), var(--color-primary));
+  border-radius: var(--radius-full);
+  width: 0%;
+  transition: width var(--transition-slow);
+}
+
+.progress-fill--success {
+  background: linear-gradient(90deg, #34d399, var(--color-success));
+}
+
+.xp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #b45309;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.15);
+  user-select: none;
+}
+
+.xp-badge.has-earned {
+  animation: xpPulse 0.4s ease;
+}
+
+@keyframes xpPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   10. QUIZ COMPONENT (Trắc nghiệm tương tác)
+   ========================================================================== */
+.quiz-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.quiz-question {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+}
+
+.quiz-option {
+  padding: 14px 18px;
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--color-purple);
+  background: var(--color-purple-light);
+}
+
+.quiz-option.is-selected {
+  border-color: var(--color-purple);
+  background: var(--color-purple-light);
+}
+
+.quiz-option.is-correct {
+  border-color: var(--color-success) !important;
+  background: var(--color-success-light) !important;
+  color: #065f46 !important;
+}
+
+.quiz-option.is-incorrect {
+  border-color: var(--color-warning) !important;
+  background: var(--color-warning-light) !important;
+  color: #92400e !important;
+}
+
+.quiz-feedback {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.925rem;
+  font-weight: 600;
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.quiz-feedback.is-visible {
+  display: flex;
+}
+
+.quiz-feedback--correct {
+  background: var(--color-success-light);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.quiz-feedback--hint {
+  background: var(--color-warning-light);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+/* ==========================================================================
+   11. BOSS CHALLENGE & TIMER COMPONENT
+   ========================================================================== */
+.boss-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+.timer-display {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: #f8fafc;
+  padding: 6px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+
+.timer-display.is-warning {
+  color: var(--color-danger);
+  border-color: rgba(244, 63, 94, 0.4);
+  background: var(--color-danger-light);
+}
+
+.timer-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   12. CHEATSHEET FAB & SLIDE-OVER DRAWER
+   ========================================================================== */
+.cheatsheet-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-floating);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.cheatsheet-fab:hover {
+  transform: scale(1.08);
+  background: var(--color-primary-hover);
+}
+
+.cheatsheet-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.cheatsheet-drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cheatsheet-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 90vw);
+  background: var(--surface-solid);
+  box-shadow: -8px 0 32px rgba(15, 23, 42, 0.15);
+  z-index: 101;
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+}
+
+.cheatsheet-drawer-backdrop.is-open .cheatsheet-drawer {
+  transform: translateX(0);
+}
+
+.cheatsheet-drawer__header {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cheatsheet-drawer__body {
+  padding: var(--space-4);
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ==========================================================================
+   13. BUTTON SYSTEM & SOUND TOGGLE
+   ========================================================================== */
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.925rem;
+  transition: all var(--transition-fast);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.btn--secondary {
+  background: var(--bg-page-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-soft);
+}
+.btn--secondary:hover {
+  background: #e2e8f0;
+}
+
+.btn--success {
+  background: var(--color-success);
+  color: #ffffff;
+}
+.btn--success:hover {
+  background: var(--color-success-hover);
+}
+
+.btn--danger {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+.btn--danger:hover {
+  background: var(--color-danger-hover);
+}
+
+.btn--sm {
+  padding: 6px 12px;
+  min-height: 36px;
+  font-size: 0.85rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sound-toggle-btn {
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  background: var(--bg-page-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-height: 38px;
+}
+.sound-toggle-btn:hover {
+  color: var(--text-primary);
+  background: #e2e8f0;
+}
+
+/* ==========================================================================
+   14. MISSION COMPLETE MODAL
+   ========================================================================== */
+.mission-complete-card {
+  text-align: center;
+  padding: var(--space-6) var(--space-4);
+  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-floating);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.mission-complete-card__emoji {
+  font-size: 3rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   15. SLIDE PRESENTATION MODE (Trình chiếu từng trang như Slide)
+   ========================================================================== */
+body.mode-slide .lesson-section {
+  display: none !important;
+}
+
+body.mode-slide .lesson-section.is-active-slide {
+  display: flex !important;
+  animation: slideFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-controls-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: 12px 18px;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+body.mode-slide .slide-controls-bar {
+  display: flex;
+}
+
+.slide-counter-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+.view-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-page-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.view-mode-toggle:hover {
+  background: #e2e8f0;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   16. REAL EDUCATIONAL ILLUSTRATION CARDS (Khung ảnh thực tế)
+   ========================================================================== */
+.edu-illustration-card {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  box-shadow: var(--shadow-sm);
+  margin: var(--space-3) 0;
+  overflow: hidden;
+}
+
+.rounded-img {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.img-caption {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   17. INTERACTIVE MOCK WINDOW CONTROLLER
+   ========================================================================== */
+.mock-window-wrapper {
+  background: #f1f5f9;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin: var(--space-3) 0;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-window {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 85%;
+  margin: 0 auto;
+}
+
+.mock-window.is-maximized {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+.mock-window.is-minimized {
+  transform: translateY(180px) scale(0.4);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mock-window.is-closed {
+  display: none;
+}
+
+.mock-window__titlebar {
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+  user-select: none;
+}
+
+.mock-window__controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mock-win-btn {
+  width: 28px;
+  height: 24px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: all var(--transition-fast);
+  min-height: unset;
+}
+
+.mock-win-btn:hover {
+  background: #e2e8f0;
+}
+
+.mock-win-btn--close:hover {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+
+.mock-window__body {
+  padding: 20px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mock-taskbar {
+  margin-top: auto;
+  background: #ffffff;
+  border-top: 1px solid var(--border-soft);
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 6px;
+}
+
+.mock-taskbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-page-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mock-taskbar-item.is-active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   18. POWER BUTTON SIMULATOR
+   ========================================================================== */
+.power-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  margin: var(--space-3) 0;
+  gap: var(--space-3);
+}
+
+.power-btn {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  border: 3px solid #cbd5e1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  font-size: 2.2rem;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  animation: powerGlow 2.5s infinite alternate;
+}
+
+@keyframes powerGlow {
+  0% { box-shadow: 0 4px 14px rgba(79, 70, 229, 0.15); border-color: #cbd5e1; color: #64748b; }
+  100% { box-shadow: 0 8px 28px rgba(79, 70, 229, 0.4); border-color: var(--color-primary); color: var(--color-primary); }
+}
+
+.power-btn:hover {
+  transform: scale(1.05);
+}
+
+.power-btn:active, .power-btn.is-powered {
+  transform: scale(0.96);
+  background: var(--color-success-light);
+  border-color: var(--color-success);
+  color: var(--color-success);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
+  animation: none;
+}
+
+/* ==========================================================================
+   19. DO'S AND DON'TS COMPARISON GRID
+   ========================================================================== */
+.do-dont-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.do-card {
+  background: #f0fdf4;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.dont-card {
+  background: #fff1f2;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.choice-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: var(--space-3) 0;
+}
+
+.choice-card {
+  padding: 16px;
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.choice-card:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+.choice-card.is-active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   20. MOCK DESKTOP INTERACTIVE WIDGET (Slide 07)
+   ========================================================================== */
+.mock-desktop-container {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+  margin: var(--space-3) 0;
+}
+
+.mock-desktop {
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #a855f7 100%);
+  border-radius: var(--radius-md);
+  height: 360px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.mock-desktop-wallpaper {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mock-desktop-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 90px;
+}
+
+.desktop-icon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 6px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.desktop-icon-btn:hover, .desktop-icon-btn.is-highlighted {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: #ffffff;
+  transform: scale(1.05);
+}
+
+.mock-desktop-taskbar {
+  height: 38px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.mock-desktop-taskbar.is-highlighted {
+  background: rgba(79, 70, 229, 0.95);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskbar-start-btn {
+  background: transparent;
+  border: none;
+  color: #38bdf8;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.taskbar-start-btn:hover, .taskbar-start-btn.is-highlighted {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.desktop-feedback-box {
+  background: var(--color-primary-light);
+  border: 1px solid rgba(79, 70, 229, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   21. APP CARDS INTERACTIVE & MODAL (Slide 08)
+   ========================================================================== */
+.app-card-interactive {
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.app-card-interactive:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+}
+
+.app-card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-page-secondary);
+  color: var(--text-secondary);
+}
+
+.app-detail-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  padding: 16px;
+}
+
+.app-detail-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.app-modal-dialog {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-app-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.modal-app-name {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.modal-app-role {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.modal-app-detail {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   22. TASKBAR SWITCHER DEMO (Slide 12)
+   ========================================================================== */
+.taskbar-switcher-demo {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin: var(--space-3) 0;
+}
+
+.mini-window-stage {
+  height: 200px;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.mini-window {
+  position: absolute;
+  width: 75%;
+  height: 140px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #cbd5e1;
+  transition: all 0.3s ease;
+  opacity: 0.4;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+.mini-window.is-active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.2);
+  border-color: var(--color-primary);
+  z-index: 5;
+}
+
+.mini-window:nth-child(1) { top: 20px; left: 20px; }
+.mini-window:nth-child(2) { top: 35px; left: 60px; }
+.mini-window:nth-child(3) { top: 50px; left: 100px; }
+
+.mini-win-titlebar {
+  height: 28px;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 7px 7px 0 0;
+}
+
+.mini-win-body {
+  padding: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.taskbar-switch-bar {
+  display: flex;
+  gap: 8px;
+  background: #1e293b;
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.taskbar-switch-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taskbar-switch-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.taskbar-switch-btn.is-active {
+  background: var(--color-primary);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.switcher-feedback {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ==========================================================================
+   23. SHUTDOWN FLOW SIMULATOR (Slide 15)
+   ========================================================================== */
+.shutdown-simulator {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin: var(--space-3) 0;
+}
+
+.sim-screen {
+  background: linear-gradient(135deg, #0ea5e9, #4f46e5);
+  height: 220px;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: background 0.6s ease;
+}
+
+.sim-screen.is-off {
+  background: #020617;
+}
+
+.sim-screen.is-off .sim-taskbar,
+.sim-screen.is-off .sim-start-menu {
+  display: none;
+}
+
+.sim-screen-off-msg {
+  display: none;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: auto;
+}
+
+.sim-screen.is-off .sim-screen-off-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.sim-taskbar {
+  height: 40px;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.sim-start-btn {
+  background: transparent;
+  border: none;
+  color: #38bdf8;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.sim-start-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sim-start-menu {
+  position: absolute;
+  bottom: 44px;
+  left: 12px;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sim-start-menu.is-open {
+  display: flex;
+}
+
+.sim-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.sim-menu-item:hover {
+  background: var(--bg-page-secondary);
+}
+
+.sim-power-option {
+  color: var(--color-danger);
+  font-weight: 600;
+  border-top: 1px solid #f1f5f9;
+  margin-top: 4px;
+}
+
+.sim-power-sub {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 20px;
+}
+
+.sim-power-sub.is-open {
+  display: flex;
+}
+
+.sim-sub-item {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sim-sub-item:hover {
+  background: #f1f5f9;
+}
+
+.sim-action-shutdown {
+  color: var(--color-danger);
+  font-weight: 700;
+  background: rgba(244, 63, 94, 0.1);
+}
+
+.sim-action-shutdown:hover {
+  background: var(--color-danger);
+  color: #ffffff;
+}
+
+/* 4 radiating cards around central computer (Slide 03) */
+.radiating-concept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: var(--space-3) 0;
+}
+
+.radiating-card {
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radiating-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   26. WIDESCREEN PRESENTATION SUITE (Bố cục Trình chiếu Đa Cột Toàn Màn Hình)
+   ========================================================================== */
+
+/* Bố cục chia 2 cột toàn màn hình */
+.slide-split-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  flex: 1;
+}
+
+.slide-split-2col--wide-left {
+  grid-template-columns: 1.12fr 0.88fr;
+}
+
+.slide-split-2col--wide-right {
+  grid-template-columns: 0.88fr 1.12fr;
+}
+
+/* Bố cục chia 3 cột toàn màn hình */
+.slide-split-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  flex: 1;
+}
+
+/* Khối Panel nội dung trình chiếu */
+.slide-panel {
+  background: var(--bg-page-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide-panel--white {
+  background: #ffffff;
+}
+
+/* Sơ đồ Luồng Dữ liệu (Data Flow Pipeline) */
+.data-flow-pipeline {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  margin-top: 10px;
+}
+
+.data-flow-step {
+  background: var(--bg-page-secondary);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.data-flow-arrow {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lưới 4 thẻ phần cứng (Slide 04) */
+.hardware-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  flex: 1;
+}
+
+.hardware-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all var(--transition-normal);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.hardware-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.08);
+}
+
+.hardware-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hardware-card__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.hardware-card__badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.hardware-card__badge--input {
+  background: var(--color-energy-light);
+  color: #b45309;
+}
+
+.hardware-card__badge--output {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.hardware-card__badge--process {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.hardware-card__desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.hardware-card__tip {
+  font-size: 0.85rem;
+  background: #f8fafc;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-primary);
+  color: #334155;
+  margin-top: auto;
+}
+
+/* Banner đối chiếu Laptop vs Desktop */
+.laptop-compare-bar {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border: 1px solid rgba(79, 70, 229, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.laptop-compare-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Hành trình 3 bước (Slide 06 & Slide 15) */
+.step-journey-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.step-journey-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-normal);
+}
+
+.step-journey-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.08);
+}
+
+.step-journey-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-number-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}

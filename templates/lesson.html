@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài giảng: Làm quen với máy tính — GĐ1</title>
+  
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="../design-system/css/tokens.css">
+  <link rel="stylesheet" href="../design-system/css/reset.css">
+  <link rel="stylesheet" href="../design-system/css/layout.css">
+  <link rel="stylesheet" href="../design-system/css/components.css">
+  <link rel="stylesheet" href="../design-system/css/utilities.css">
+  <link rel="stylesheet" href="../design-system/css/responsive.css">
+</head>
+<body class="mode-slide">
+
+  <!-- Background Ambient Glow & Dot-Grid -->
+  <div id="ambient-bg"></div>
+
+  <!-- Thanh Điều khiển Trình chiếu của Giáo viên (Presentation Bar) -->
+  <header class="presentation-bar">
+    <div class="presentation-bar__left">
+      <a href="../index.html" class="presentation-back-btn" title="Về Cổng Khóa học">‹</a>
+      <div class="presentation-meta-title">
+        <span class="presentation-badge">GĐ1: Nhập môn máy tính · Tuần 01 · Buổi 01</span>
+        <h1 class="presentation-lesson-title">Làm quen với máy tính</h1>
+      </div>
+    </div>
+
+    <div class="presentation-bar__right">
+      <div class="slide-counter-pill">
+        Slide <span class="current-slide-num">1</span> / <span class="total-slides-num">18</span>
+      </div>
+
+      <div class="presentation-nav-group">
+        <button class="btn btn--secondary btn--sm btn--prev-slide" title="Slide trước (Phím ←)">
+          ◀ Trước
+        </button>
+        <button class="btn btn--primary btn--sm btn--next-slide" title="Slide tiếp theo (Phím →)">
+          Tiếp ▶
+        </button>
+      </div>
+
+      <button class="btn btn--secondary btn--sm presentation-cheatsheet-btn" title="Mở Sổ tay tra cứu phím tắt & thuật ngữ">
+        📘 Sổ tay
+      </button>
+
+      <button class="btn btn--secondary btn--sm presentation-fullscreen-btn" title="Chế độ Trình chiếu Toàn màn hình">
+        ⛶ Toàn màn hình
+      </button>
+    </div>
+  </header>
+
+  <!-- Khung Slide Trình chiếu Chính -->
+  <div class="lesson-shell">
+    <div class="lesson-grid">
+      <main class="lesson-main">
+        <!-- Các slide sẽ được LearningEngine tự động nạp từ Lesson Data -->
+        <div class="p-4 text-center text-muted">Đang tải slide bài giảng...</div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Slide-over Drawer chứa Sổ tay Tra cứu -->
+  <div class="cheatsheet-drawer-backdrop" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="cheatsheet-drawer">
+      <div class="cheatsheet-drawer__header">
+        <div class="d-flex items-center gap-2">
+          <span style="font-size: 1.4rem;">📘</span>
+          <strong id="drawer-title">Sổ tay tra cứu nhanh</strong>
+        </div>
+        <button class="cheatsheet-close-btn btn btn--secondary btn--sm" aria-label="Đóng sổ tay">✕</button>
+      </div>
+      <div class="cheatsheet-drawer__body">
+        <!-- Được LearningEngine cập nhật tự động theo từng bài -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Chi tiết Ứng dụng (Slide 08) -->
+  <div class="app-detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-app-name-id">
+    <div class="app-modal-dialog">
+      <div class="modal-app-icon">📱</div>
+      <h3 class="modal-app-name" id="modal-app-name-id">Tên ứng dụng</h3>
+      <div class="modal-app-role">Công dụng chính</div>
+      <p class="modal-app-detail">Mô tả chi tiết ứng dụng...</p>
+      <button class="btn btn--primary app-modal-close-btn w-100 justify-center">Đã hiểu! Đóng lại</button>
+    </div>
+  </div>
+
+  <!-- JS Modules Hệ thống -->
+  <script src="../design-system/js/storage.js"></script>
+  <script src="../design-system/js/audio.js"></script>
+  <script src="../design-system/js/visualizers.js"></script>
+  <script src="../design-system/js/timer.js"></script>
+  <script src="../design-system/js/checklist.js"></script>
+  <script src="../design-system/js/quiz.js"></script>
+  <script src="../design-system/js/learning-engine.js"></script>
+
+  <!-- Nạp file Lesson Data -->
+  <script src="../lessons/gd1/week-01/lesson-01.js"></script>
+  <script src="../lessons/gd1/week-01/lesson-02.js"></script>
+
+  <!-- Khởi tạo Bài giảng -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lessonId = urlParams.get('id') || 'gd1-w01-l01';
+
+      let targetLesson = null;
+      if (window.LessonRegistry && window.LessonRegistry[lessonId]) {
+        targetLesson = window.LessonRegistry[lessonId];
+      } else if (window.currentLessonData) {
+        targetLesson = window.currentLessonData;
+      }
+
+      if (targetLesson) {
+        window.LearningEngine.init(targetLesson);
+        document.title = `Bài giảng: ${targetLesson.title} — GĐ1`;
+      } else {
+        console.error(`Không tìm thấy dữ liệu cho bài học ID: ${lessonId}`);
+      }
+    });
+  </script>
+</body>
+</html>

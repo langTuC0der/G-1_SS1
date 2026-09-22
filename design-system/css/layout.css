@@ -1,0 +1,222 @@
+/**
+ * LAYOUT & BACKGROUND SYSTEM — Bright & Friendly Modern Edu
+ * Chuyên biệt cho Giao diện Trình chiếu Bài giảng 1:1 Toàn Màn Hình (Full-Screen Teaching Presentation Deck)
+ */
+
+/* Nền sáng tinh tế & Ambient Glow nhẹ */
+body {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.10), transparent 35%),
+    radial-gradient(circle at 90% 15%, rgba(79, 70, 229, 0.09), transparent 35%),
+    radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.06), transparent 35%),
+    linear-gradient(135deg, var(--bg-page), var(--bg-page-secondary));
+  background-attachment: fixed;
+  color: var(--text-primary);
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Lưới chấm bi kỹ thuật số tinh tế (Dot-grid pattern) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#94a3b8 0.75px, transparent 0.75px);
+  background-size: 20px 20px;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   PRESENTATION TOP BAR (Thanh công cụ trình chiếu của Giáo viên)
+   ========================================================================== */
+.presentation-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 10px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.presentation-bar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.presentation-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--bg-page-secondary);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border: 1px solid var(--border-soft);
+  transition: all var(--transition-fast);
+}
+
+.presentation-back-btn:hover {
+  background: #ffffff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.presentation-meta-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.presentation-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.presentation-lesson-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.presentation-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slide-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.presentation-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   FULLSCREEN SLIDE PRESENTATION STAGE (Khung chứa Slide Full Màn Hình)
+   ========================================================================== */
+.lesson-shell {
+  width: min(1520px, calc(100% - 48px));
+  margin: 14px auto 18px;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 84px);
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+
+.lesson-main {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section bài học (Mỗi Section là một Slide) */
+body.mode-slide .lesson-section {
+  display: none !important;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+}
+
+body.mode-slide .lesson-section.is-active-slide {
+  display: flex !important;
+  flex: 1;
+  flex-direction: column;
+  animation: slideFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Thẻ Slide toàn màn hình — Apple Keynote / Google Slides Widescreen Aesthetics */
+body.mode-slide .edu-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 165px);
+  padding: 28px 36px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-soft);
+  justify-content: flex-start;
+}
+
+body.mode-slide .edu-card__header {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+}
+
+body.mode-slide .edu-card__header h2 {
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 4px 0 0;
+}
+
+body.mode-slide .edu-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--space-4);
+}
+
+/* Fullscreen Mode Enhancements */
+:fullscreen .presentation-bar,
+:-webkit-full-screen .presentation-bar {
+  padding: 8px 32px;
+}
+
+:fullscreen .lesson-shell,
+:-webkit-full-screen .lesson-shell {
+  width: min(1600px, calc(100% - 32px));
+  margin: 8px auto 12px;
+  min-height: calc(100vh - 68px);
+}
+
+:fullscreen body.mode-slide .edu-card,
+:-webkit-full-screen body.mode-slide .edu-card {
+  min-height: calc(100vh - 135px);
+  padding: 32px 48px;
+}
