@@ -51,7 +51,7 @@
         id: 'slide-01',
         type: 'concept',
         icon: '🚀',
-        eyebrow: 'SLIDE 01 · KHỞI ĐẦU BUỔI HỌC (3 PHÚT)',
+        eyebrow: 'SLIDE 01 · KHỞI ĐẦU BUỔI HỌC · NHẬP MÔN',
         title: 'Mission 01: Làm quen với người bạn mới – Máy tính',
         badge: { text: 'Mục tiêu buổi học', type: 'primary' },
         contentHtml: `
@@ -64,7 +64,7 @@
               </div>
 
               <blockquote style="border-left: 4px solid var(--color-primary); padding-left: 16px; margin: 0; font-size: 1.15rem; font-weight: 700; color: var(--color-primary); background: #eff6ff; padding: 12px 16px; border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-                “Hôm nay thầy cô và em sẽ cùng nhau học cách làm chủ chiếc máy tính như một người dùng thực thụ!”
+                “Chào mừng em đến với thế giới công nghệ! Hôm nay chúng mình sẽ cùng làm chủ chiếc máy tính như một người dùng thực thụ!”
               </blockquote>
             </div>
 
@@ -108,7 +108,7 @@
               </div>
 
               <div class="d-flex justify-between items-center p-3 rounded" style="background: var(--bg-page-secondary); border: 1px solid var(--border-soft);">
-                <span>🎯 <strong>Thời lượng:</strong> 90 phút tương tác trực tiếp 1:1</span>
+                <span>🎯 <strong>Mục tiêu:</strong> Làm chủ 4 năng lực nền tảng & Tự tin thao tác!</span>
                 <button class="btn btn--primary" onclick="window.LearningEngine.nextSlide();">
                   🚀 Bắt đầu bài học ➔
                 </button>
@@ -125,7 +125,7 @@
         id: 'slide-02',
         type: 'warmup',
         icon: '🤔',
-        eyebrow: 'SLIDE 02 · KHỞI ĐỘNG (7 PHÚT)',
+        eyebrow: 'SLIDE 02 · KHỞI ĐỘNG · GIAO LƯU',
         title: 'Em đã từng làm gì với máy tính?',
         badge: { text: 'Khởi động & Trò chuyện', type: 'warning' },
         contentHtml: `
@@ -160,12 +160,12 @@
               <div class="choice-feedback mt-3 p-3 rounded" style="display: none; background: var(--color-success-light); color: #065f46; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.95rem;"></div>
             </div>
 
-            <!-- Cột phải: Gợi ý trò chuyện giữa Thầy cô và Học sinh -->
+            <!-- Cột phải: Góc giao lưu học sinh -->
             <div class="slide-panel slide-panel--white d-flex flex-column justify-between">
               <div>
                 <div class="d-flex items-center gap-2 mb-3">
                   <span style="font-size: 1.6rem;">🗣️</span>
-                  <h4 style="margin: 0; font-size: 1.15rem; color: var(--color-primary);">Thầy cô cùng em trò chuyện</h4>
+                  <h4 style="margin: 0; font-size: 1.15rem; color: var(--color-primary);">Góc giao lưu: Người bạn máy tính</h4>
                 </div>
                 <div class="d-flex flex-column gap-3">
                   <div class="p-3 rounded" style="background: #f8fafc; border-left: 3px solid var(--color-primary);">
@@ -180,13 +180,13 @@
 
                   <div class="p-3 rounded" style="background: #f8fafc; border-left: 3px solid var(--color-success);">
                     <strong style="color: var(--text-primary); font-size: 0.95rem;">3. Em đã từng tự mình bật máy tính lên bao giờ chưa?</strong>
-                    <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">Đừng lo nếu chưa từng nhé, hôm nay thầy cô sẽ hướng dẫn em từng thao tác một!</p>
+                    <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">Đừng lo nếu chưa từng nhé, hôm nay chúng mình sẽ cùng làm quen từng thao tác một!</p>
                   </div>
                 </div>
               </div>
 
               <div class="p-2 text-center rounded mt-3" style="background: #eff6ff; font-size: 0.88rem; color: var(--color-primary);">
-                ✨ <em>Mục tiêu: Giúp học sinh cảm thấy gần gũi, thoải mái và hào hứng với bài học!</em>
+                ✨ <strong>Bí kíp học tập:</strong> Hãy cùng khám phá cỗ máy thông minh với tinh thần thật hào hứng nhé!
               </div>
             </div>
           </div>
@@ -200,7 +200,7 @@
         id: 'slide-03',
         type: 'concept',
         icon: '💻',
-        eyebrow: 'SLIDE 03 · KHÁM PHÁ (10 PHÚT)',
+        eyebrow: 'SLIDE 03 · KHÁM PHÁ · BẢN CHẤT MÁY TÍNH',
         title: 'Máy tính là gì? — Bản chất công cụ xử lý thông tin',
         badge: { text: 'Khái niệm cốt lõi', type: 'primary' },
         contentHtml: `
@@ -264,7 +264,7 @@
 
           <div class="p-3 bg-page-secondary rounded d-flex items-center justify-between" style="border-left: 4px solid var(--color-energy);">
             <div>
-              <strong>🗣️ Thầy cô hỏi gợi mở:</strong>
+              <strong>🤔 Thử thách suy luận:</strong>
               <p class="text-secondary mt-1" style="font-size: 0.95rem; margin: 0;">
                 “Nếu muốn làm một bài báo tường thuyết trình trước cả lớp, theo em máy tính sẽ hỗ trợ những siêu năng lực nào trong 4 điều trên?”
               </p>
@@ -281,7 +281,7 @@
         id: 'slide-04',
         type: 'concept',
         icon: '🔍',
-        eyebrow: 'SLIDE 04 · QUAN SÁT & TƯƠNG TÁC (12 PHÚT)',
+        eyebrow: 'SLIDE 04 · QUAN SÁT & TƯƠNG TÁC · 4 BỘ PHẬN',
         title: 'Khám phá 4 bộ phận chính của máy tính',
         badge: { text: 'Kiến trúc phần cứng', type: 'energy' },
         contentHtml: `
@@ -321,7 +321,7 @@
               </div>
 
               <div class="p-3 rounded" style="background: var(--bg-page-secondary); border-left: 4px solid var(--color-primary);">
-                <strong style="font-size: 0.92rem;">🗣️ Thầy cô trò chuyện:</strong>
+                <strong style="font-size: 0.92rem;">💡 Góc liên tưởng thú vị:</strong>
                 <span class="text-secondary" style="font-size: 0.88rem; display: block; margin-top: 2px;">“4 bộ phận phối hợp như cơ thể con người: <em>Mắt</em> (Màn hình), <em>Tay</em> (Bàn phím & Chuột), <em>Bộ não</em> (Thân máy)!”</span>
               </div>
             </div>
@@ -414,7 +414,7 @@
         id: 'slide-05',
         type: 'quiz',
         icon: '🎯',
-        eyebrow: 'SLIDE 05 · MINI GAME (5 PHÚT)',
+        eyebrow: 'SLIDE 05 · MINI GAME · ĐOÁN BỘ PHẬN',
         title: 'Thử tài quan sát: Đây là bộ phận nào?',
         badge: { text: 'Thử tài quan sát', type: 'primary' },
         contentHtml: `
@@ -450,7 +450,7 @@
                   <h4 style="margin: 0; font-size: 1.1rem; color: var(--color-primary);">Bí quyết nhận diện nhanh</h4>
                 </div>
                 <p class="text-secondary" style="font-size: 0.95rem; line-height: 1.6;">
-                  Học sinh hãy quan sát kỹ công dụng chính của từng thiết bị:
+                  Em hãy quan sát kỹ công dụng chính của từng thiết bị:
                 </p>
                 <ul style="padding-left: 20px; line-height: 1.8; font-size: 0.92rem; color: var(--text-secondary);">
                   <li><strong>Muốn gõ chữ hoặc số:</strong> Dùng Bàn phím (Keyboard).</li>
@@ -461,7 +461,7 @@
               </div>
 
               <div class="p-3 rounded" style="background: var(--bg-page-secondary); border-left: 4px solid var(--color-energy);">
-                <strong>🗣️ Thầy cô hỏi nhanh học sinh:</strong>
+                <strong>🤔 Câu hỏi thử tài:</strong>
                 <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">
                   “Nếu tháo dây chuột ra thì máy tính có bật lên được không? Và lúc đó chúng ta điều khiển máy tính bằng thiết bị nào?”
                 </p>
@@ -478,7 +478,7 @@
         id: 'slide-06',
         type: 'concept',
         icon: '⚡',
-        eyebrow: 'SLIDE 06 · THAO TÁC CHUẨN (10 PHÚT)',
+        eyebrow: 'SLIDE 06 · THAO TÁC CHUẨN · BẬT NGUỒN AN TOÀN',
         title: 'Quy trình khởi động máy tính an toàn',
         badge: { text: 'Quy trình chuẩn 3 bước', type: 'warning' },
         contentHtml: `
@@ -542,7 +542,7 @@
               <div class="power-feedback text-secondary font-semibold" style="font-size: 0.95rem;">⚪ Máy tính đang ở trạng thái tắt. Nhấp để bật!</div>
             </div>
 
-            <!-- Bên phải: 2 Lời dặn dò an toàn & Hướng dẫn của Thầy cô -->
+            <!-- Bên phải: 2 Lời dặn dò an toàn & Thử thách trên máy thật -->
             <div class="d-flex flex-column gap-3 justify-between">
               <div class="p-3 bg-page-secondary rounded" style="border-left: 4px solid var(--color-danger); background: #fff1f2; border: 1px solid rgba(244, 63, 94, 0.25);">
                 <strong style="color: var(--color-danger); font-size: 0.95rem;">❌ NGUYÊN TẮC VÀNG — TUYỆT ĐỐI KHÔNG LÀM:</strong>
@@ -552,9 +552,9 @@
               </div>
 
               <div class="p-3 rounded" style="background: var(--color-energy-light); border: 1px solid rgba(245, 158, 11, 0.3);">
-                <strong style="color: #92400e; font-size: 0.95rem;">👉 Thầy cô hướng dẫn học sinh trên máy thật:</strong>
+                <strong style="color: #92400e; font-size: 0.95rem;">👉 Thử thách quan sát trên máy thật của em:</strong>
                 <p style="font-size: 0.9rem; color: #78350f; margin: 4px 0 0; line-height: 1.55;">
-                  “Em hãy chỉ tay vào vị trí nút Power trên thân máy hoặc bàn phím của mình cho thầy cô xem nhé! <em>(Lưu ý: Chỉ đưa tay chỉ vị trí, không bấm nút vì máy đang mở học trực tuyến nhé!)</em>”
+                  “Em hãy xác định vị trí nút Power trên thân máy hoặc bàn phím của mình nhé! <em>(Lưu ý: Chỉ đưa tay chỉ vị trí, không bấm nút vì máy đang mở học trực tuyến nhé!)</em>”
                 </p>
               </div>
             </div>
@@ -569,7 +569,7 @@
         id: 'slide-07',
         type: 'concept',
         icon: '🪟',
-        eyebrow: 'SLIDE 07 · KHÁM PHÁ (10 PHÚT)',
+        eyebrow: 'SLIDE 07 · KHÁM PHÁ · MẶT BÀN DESKTOP',
         title: 'Chào mừng đến Desktop — Mặt bàn làm việc số',
         badge: { text: 'Không gian làm việc', type: 'primary' },
         contentHtml: `
@@ -675,7 +675,7 @@
         id: 'slide-08',
         type: 'concept',
         icon: '📦',
-        eyebrow: 'SLIDE 08 · TÌM HIỂU (10 PHÚT)',
+        eyebrow: 'SLIDE 08 · TÌM HIỂU · THẾ GIỚI ỨNG DỤNG',
         title: 'Application (Ứng dụng) là gì? — Các công cụ số đắc lực',
         badge: { text: 'Công cụ số', type: 'purple' },
         contentHtml: `
@@ -739,7 +739,7 @@
           <!-- Khối câu hỏi tương tác tình huống chân slide -->
           <div class="p-3 bg-page-secondary rounded mt-2 d-flex items-center justify-between" style="border-left: 4px solid var(--color-purple);">
             <div>
-              <strong>🗣️ Tình huống tương tác:</strong>
+              <strong>🤔 Tình huống thực tế:</strong>
               <p class="text-secondary mt-1" style="font-size: 0.95rem; margin: 0;">
                 “Nếu muốn tra cứu thông tin về hành tinh Sao Hỏa, em mở ứng dụng nào? Còn nếu muốn viết một bài văn tả người bạn thân thì sao?”
               </p>
@@ -756,7 +756,7 @@
         id: 'slide-09',
         type: 'lab',
         icon: '💻',
-        eyebrow: 'SLIDE 09 · THỰC HÀNH TẠI LỚP (15 PHÚT)',
+        eyebrow: 'SLIDE 09 · THỰC CHIẾN TẠI LỚP · TỰ MỞ ỨNG DỤNG',
         title: 'Hands-on Lab 01: Tự mở ứng dụng trên máy tính thật',
         badge: { text: 'Thực hành thao tác', type: 'energy' },
         contentHtml: `
@@ -764,7 +764,7 @@
             <!-- Cột trái: 3 bước mở chuẩn xác -->
             <div class="d-flex flex-column justify-between">
               <div>
-                <p style="font-size: 1.02rem; margin: 0 0 12px;">Học sinh chia sẻ màn hình và thực hành mở lần lượt 3 ứng dụng theo 3 bước:</p>
+                <p style="font-size: 1.02rem; margin: 0 0 12px;">Em hãy thực hành mở lần lượt 3 ứng dụng quen thuộc theo 3 bước:</p>
 
                 <div class="lab-steps mb-3">
                   <div class="lab-step" data-state="pending">
@@ -804,7 +804,7 @@
               <div>
                 <div class="d-flex items-center justify-between mb-3">
                   <h4 style="margin: 0; font-size: 1.15rem; color: var(--color-energy);">📋 Danh sách nhiệm vụ Lab 01</h4>
-                  <span class="badge badge--energy">Học sinh chia sẻ màn hình</span>
+                  <span class="badge badge--energy">Thực hành trên máy thật</span>
                 </div>
 
                 <div class="checklist-group">
@@ -835,9 +835,9 @@
               </div>
 
               <div class="p-3 bg-page-secondary rounded mt-3">
-                <strong>👉 Thầy cô quan sát:</strong>
+                <strong>👉 Bí kíp làm chủ:</strong>
                 <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">
-                  Khích lệ học sinh tự thao tác bằng cả 2 cách: dùng chuột click Start và dùng phím tắt <kbd class="keycap">Win</kbd>.
+                  Em hãy thử thao tác bằng cả 2 cách: dùng chuột click nút Start và dùng phím tắt <kbd class="keycap">Win</kbd>!
                 </p>
               </div>
             </div>
@@ -852,7 +852,7 @@
         id: 'slide-10',
         type: 'concept',
         icon: '🪟',
-        eyebrow: 'SLIDE 10 · QUAN SÁT (12 PHÚT)',
+        eyebrow: 'SLIDE 10 · GIẢI PHÃU CỬA SỔ · WINDOW ANATOMY',
         title: 'Mỗi ứng dụng sống trong một “Cửa sổ” (Window)',
         badge: { text: 'Kiến thức cốt lõi', type: 'primary' },
         contentHtml: `
@@ -887,7 +887,7 @@
               </div>
 
               <div class="p-3 bg-page-secondary rounded mt-3">
-                <strong>🗣️ Thầy cô hỏi học sinh:</strong>
+                <strong>🤔 Câu hỏi thử thách:</strong>
                 <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">“Nếu mở cùng lúc 3 cửa sổ, làm sao em biết cửa sổ nào đang được chọn làm việc?”</p>
               </div>
             </div>
@@ -937,12 +937,12 @@
         id: 'slide-11',
         type: 'lab',
         icon: '🎮',
-        eyebrow: 'SLIDE 11 · TƯƠNG TÁC THỬ NGHIỆM',
+        eyebrow: 'SLIDE 11 · ĐẤU TRƯỜNG TƯƠNG TÁC · 3 NÚT CỬA SỔ',
         title: 'Hãy thử điều khiển cửa sổ ảo trực tiếp',
         badge: { text: 'Thử nghiệm trực tiếp', type: 'energy' },
         contentHtml: `
           <div class="d-flex items-center justify-between mb-2">
-            <p style="font-size: 1.05rem; margin: 0;">Học sinh hãy nhấp vào 3 nút ở góc trên bên phải cửa sổ ảo dưới đây để quan sát hiệu ứng:</p>
+            <p style="font-size: 1.05rem; margin: 0;">Em hãy nhấp vào 3 nút ở góc trên bên phải cửa sổ ảo dưới đây để quan sát hiệu ứng:</p>
             <span class="badge badge--energy">🖱️ Tương tác trực tiếp trên slide</span>
           </div>
 
@@ -1002,7 +1002,7 @@
         id: 'slide-12',
         type: 'concept',
         icon: '🔄',
-        eyebrow: 'SLIDE 12 · MẸO THAO TÁC',
+        eyebrow: 'SLIDE 12 · MẸO THAO TÁC · CHUYỂN ĐỔI ỨNG DỤNG',
         title: 'Khi mở cùng lúc nhiều ứng dụng thì làm sao?',
         badge: { text: 'Kỹ năng làm việc', type: 'primary' },
         contentHtml: `
@@ -1101,7 +1101,7 @@
               </div>
 
               <div class="p-2 text-center rounded mt-3" style="background: #eff6ff; font-size: 0.85rem; color: var(--color-primary);">
-                💡 <em>Học sinh có thể thử nghiệm ngay trên máy tính của mình cùng thầy cô!</em>
+                💡 <em>Em hãy thử ngay trên máy tính của mình tổ hợp phím thần kỳ này nhé!</em>
               </div>
             </div>
           </div>
@@ -1115,11 +1115,11 @@
         id: 'slide-13',
         type: 'lab',
         icon: '🛠',
-        eyebrow: 'SLIDE 13 · THỰC CHIẾN TỔNG HỢP (15 PHÚT)',
+        eyebrow: 'SLIDE 13 · THỰC CHIẾN TỔNG HỢP · LÀM CHỦ MÁY TÍNH',
         title: 'Hands-on Lab 02: Em làm chủ máy tính',
         badge: { text: 'Thực hành tổng hợp', type: 'energy' },
         contentHtml: `
-          <p style="font-size: 1.05rem; margin-bottom: 14px;">Học sinh chia sẻ màn hình và hoàn thành lần lượt 6 nhiệm vụ điều khiển thực tế trên máy tính của mình:</p>
+          <p style="font-size: 1.05rem; margin-bottom: 14px;">Em hãy hoàn thành lần lượt 6 nhiệm vụ điều khiển thực tế trên máy tính của mình:</p>
 
           <div class="checklist-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; flex: 1;">
             <div class="checklist-item" data-id="lab2_m1" style="padding: 16px;">
@@ -1173,8 +1173,8 @@
 
           <div class="p-3 rounded mt-3 d-flex items-center justify-between" style="background: var(--bg-page-secondary); border-left: 4px solid var(--color-energy);">
             <div>
-              <strong>👉 Giáo viên theo dõi:</strong>
-              <span class="text-secondary" style="font-size: 0.9rem; margin-left: 6px;">Học sinh tích chọn từng nhiệm vụ khi đã biểu diễn thành công trên màn hình chia sẻ!</span>
+              <strong>👉 Mục tiêu hoàn thành:</strong>
+              <span class="text-secondary" style="font-size: 0.9rem; margin-left: 6px;">Em hãy tích chọn từng nhiệm vụ khi đã thực hiện thành công trên máy tính nhé!</span>
             </div>
             <span class="badge badge--success">Đạt chuẩn 6/6</span>
           </div>
@@ -1188,7 +1188,7 @@
         id: 'slide-14',
         type: 'concept',
         icon: '⚠️',
-        eyebrow: 'SLIDE 14 · BẢO VỆ MÁY TÍNH',
+        eyebrow: 'SLIDE 14 · BẢO VỆ MÁY TÍNH · THÓI QUEN VÀNG',
         title: 'Chăm sóc người bạn máy tính đúng cách',
         badge: { text: 'An toàn sử dụng', type: 'warning' },
         contentHtml: `
@@ -1241,7 +1241,7 @@
         id: 'slide-15',
         type: 'concept',
         icon: '🌙',
-        eyebrow: 'SLIDE 15 · KẾT THÚC BUỔI LÀM VIỆC',
+        eyebrow: 'SLIDE 15 · QUY TRÌNH AN TOÀN · TẮT MÁY CHUẨN',
         title: 'Quy trình tắt máy tính an toàn (Shut down)',
         badge: { text: 'Quy trình an toàn', type: 'primary' },
         contentHtml: `
@@ -1344,7 +1344,7 @@
         id: 'slide-16',
         type: 'quiz',
         icon: '⚡',
-        eyebrow: 'SLIDE 16 · QUICK QUIZ (5 PHÚT)',
+        eyebrow: 'SLIDE 16 · QUICK QUIZ · TRẮC NGHIỆM 5 CÂU',
         title: 'Quick Quiz: Kiểm tra phản xạ & Củng cố kiến thức',
         badge: { text: 'Củng cố kiến thức', type: 'primary' },
         contentHtml: `
@@ -1411,7 +1411,7 @@
 
               <div class="p-3 rounded text-center" style="background: #eff6ff; border: 1.5px solid rgba(79, 70, 229, 0.25);">
                 <strong style="color: var(--color-primary); font-size: 1.05rem;">🎯 Mục tiêu: Trả lời đúng 5/5 câu hỏi!</strong>
-                <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">Học sinh nhấp chọn trực tiếp trên màn hình, hệ thống sẽ phát âm thanh và báo kết quả tức thì.</p>
+                <p class="text-secondary mt-1" style="font-size: 0.9rem; margin: 0;">Em hãy nhấp chọn trực tiếp trên màn hình, hệ thống sẽ phát âm thanh và báo kết quả tức thì.</p>
               </div>
             </div>
           </div>
@@ -1425,7 +1425,7 @@
         id: 'slide-17',
         type: 'boss',
         icon: '🏆',
-        eyebrow: 'SLIDE 17 · BOSS CHALLENGE (5 PHÚT)',
+        eyebrow: 'SLIDE 17 · BOSS CHALLENGE · 5 PHÚT TỰ DO',
         title: 'Thử thách độc lập: Em là Người điều khiển máy tính',
         badge: { text: 'Thử thách 5 phút độc lập', type: 'danger' },
         contentHtml: `
@@ -1436,7 +1436,7 @@
                 <span style="font-size: 2.8rem;">⏱️</span>
                 <h3 style="color: var(--color-danger); margin: 6px 0; font-size: 1.3rem;">Đồng hồ thử thách 5 phút</h3>
                 <p class="text-secondary" style="font-size: 0.95rem;">
-                  Học sinh tự mình thao tác độc lập trên máy thật. Thầy cô chỉ quan sát và chấm điểm hoàn thành!
+                  Em hãy tự mình thao tác độc lập trên máy tính và bấm hoàn thành từng bước nhé!
                 </p>
 
                 <div class="boss-banner timer-widget my-3" data-duration="300" style="padding: 24px; background: #fff1f2; border: 1.5px solid rgba(244, 63, 94, 0.25);">
@@ -1508,7 +1508,7 @@
         id: 'slide-18',
         type: 'complete',
         icon: '🎉',
-        eyebrow: 'SLIDE 18 · TỔNG KẾT BUỔI HỌC (1 PHÚT)',
+        eyebrow: 'SLIDE 18 · TỔNG KẾT BUỔI HỌC · VINH DANH',
         title: 'Hoàn thành xuất sắc Buổi 01!',
         badge: { text: 'Tổng kết & Chuẩn bị', type: 'success' },
         contentHtml: `
@@ -1543,7 +1543,7 @@
             <div class="slide-panel slide-panel--white d-flex flex-column justify-between">
               <div>
                 <div class="p-3 rounded mb-3" style="background: #f8fafc; border: 1.5px solid var(--border-soft);">
-                  <strong style="font-size: 1rem; color: var(--text-primary);">💬 Thầy cô trò chuyện cuối giờ:</strong>
+                  <strong style="font-size: 1rem; color: var(--text-primary);">💬 Góc chia sẻ cảm nhận:</strong>
                   <p class="text-secondary mt-1" style="font-size: 0.92rem; margin: 0 0 10px;">
                     “Hôm nay điều gì làm em thấy thú vị và bất ngờ nhất về chiếc máy tính?”
                   </p>

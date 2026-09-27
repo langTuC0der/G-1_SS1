@@ -98,4 +98,76 @@
     height: 48px;
     font-size: 1.3rem;
   }
+
+  /* Whack-a-Mole Game Mobile */
+  .whack-mole-legend {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .whack-hud {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .whack-hud-group {
+    gap: 8px;
+  }
+
+  .whack-hud-badge {
+    padding: 4px 10px;
+  }
+
+  .whack-hud-badge .value {
+    font-size: 1rem;
+    min-width: 28px;
+  }
+
+  .whack-grid {
+    gap: 10px 14px;
+    max-width: 340px;
+  }
+
+  .mole-hole {
+    height: 85px;
+  }
+
+  .mole {
+    width: 65px;
+    height: 72px;
+  }
+
+  .mole-svg-wrap {
+    width: 60px;
+    height: 60px;
+  }
 }
+
+/* Split-screen Responsive for Whack-a-Mole */
+@media (max-width: 900px) {
+  .whack-grid {
+    gap: 14px 20px;
+    max-width: 600px;
+  }
+
+  .mole-hole {
+    height: 100px;
+  }
+
+  .mole {
+    width: 78px;
+    height: 86px;
+  }
+
+  .mole-svg-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .whack-mole-legend {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+

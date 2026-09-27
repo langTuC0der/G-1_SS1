@@ -19,6 +19,7 @@
       this.initTaskbarSwitcher();
       this.initShutdownFlow();
       this.bindKeyboardEvents();
+      this.initMouseMasterySuite();
     },
 
     /* Khởi tạo tương tác click trên các phím ảo */
@@ -412,6 +413,264 @@
           if (menu) menu.classList.remove('is-open');
           if (sub) sub.classList.remove('is-open');
           if (window.SoundManager) window.SoundManager.playPop();
+        }
+      });
+    },
+
+    /* ==========================================================================
+       MOUSE MASTERY SUITE (Buổi 02: Tương tác Chuột)
+       ========================================================================== */
+    initMouseMasterySuite: function () {
+      this.initClickTester();
+      this.initDoubleClickGift();
+      this.initRightClickDemo();
+      this.initScrollZoomDemo();
+      this.initDragDropArena();
+      this.initMouseBubbleGame();
+    },
+
+    /* 1. Click Tester (Single Click Sandbox) */
+    initClickTester: function () {
+      let clickCount = 0;
+      document.addEventListener('click', (e) => {
+        const box = e.target.closest('.click-tester-box');
+        if (box) {
+          clickCount++;
+          const counterEl = box.querySelector('.click-tester-counter');
+          const feedbackEl = box.querySelector('.click-tester-feedback');
+          if (counterEl) counterEl.textContent = clickCount;
+          if (feedbackEl) {
+            feedbackEl.innerHTML = `🎯 <strong>Bấm thành công!</strong> Đã nhấp ${clickCount} lần dứt khoát!`;
+          }
+          if (window.SoundManager) window.SoundManager.playClick();
+          
+          if (clickCount === 5) {
+            document.dispatchEvent(new CustomEvent('lesson:xp', {
+              detail: { amount: 5, reason: 'click_tester' }
+            }));
+          }
+        }
+      });
+    },
+
+    /* 2. Double Click Gift Box */
+    initDoubleClickGift: function () {
+      document.addEventListener('dblclick', (e) => {
+        const gift = e.target.closest('.double-click-gift');
+        if (gift) {
+          gift.classList.toggle('is-opened');
+          const statusEl = gift.querySelector('.gift-status-text');
+          const emojiEl = gift.querySelector('.gift-emoji');
+          if (gift.classList.contains('is-opened')) {
+            if (emojiEl) emojiEl.textContent = '🎉';
+            if (statusEl) statusEl.textContent = 'ĐÃ MỞ HỘP QUÀ!';
+            if (window.SoundManager) window.SoundManager.playSuccess();
+            document.dispatchEvent(new CustomEvent('lesson:xp', {
+              detail: { amount: 10, reason: 'double_click_gift' }
+            }));
+          } else {
+            if (emojiEl) emojiEl.textContent = '🎁';
+            if (statusEl) statusEl.textContent = 'Nháy đúp 2 lần để mở!';
+            if (window.SoundManager) window.SoundManager.playPop();
+          }
+        }
+      });
+    },
+
+    /* 3. Right Click Context Menu Demo */
+    initRightClickDemo: function () {
+      document.addEventListener('contextmenu', (e) => {
+        const zone = e.target.closest('.mock-context-zone');
+        if (zone) {
+          e.preventDefault();
+          const menu = zone.querySelector('.mock-context-menu');
+          const rect = zone.getBoundingClientRect();
+          const posX = Math.min(e.clientX - rect.left, rect.width - 200);
+          const posY = Math.min(e.clientY - rect.top, rect.height - 180);
+
+          if (menu) {
+            menu.style.left = `${Math.max(10, posX)}px`;
+            menu.style.top = `${Math.max(10, posY)}px`;
+            menu.classList.add('is-visible');
+            if (window.SoundManager) window.SoundManager.playPop();
+          }
+        }
+      });
+
+      // Tắt menu khi click chuột trái ra ngoài
+      document.addEventListener('click', (e) => {
+        const menuItem = e.target.closest('.mock-menu-item');
+        if (menuItem) {
+          const action = menuItem.dataset.action;
+          const feedback = menuItem.closest('.mock-context-zone')?.querySelector('.context-feedback');
+          if (feedback) {
+            feedback.innerHTML = `✨ Em vừa chọn lệnh: <strong>${menuItem.textContent.trim()}</strong>!`;
+          }
+          if (window.SoundManager) window.SoundManager.playClick();
+        }
+
+        const openMenus = document.querySelectorAll('.mock-context-menu.is-visible');
+        openMenus.forEach(m => m.classList.remove('is-visible'));
+      });
+    },
+
+    /* 4. Scroll Zoom Demo */
+    initScrollZoomDemo: function () {
+      document.addEventListener('wheel', (e) => {
+        const zoomBox = e.target.closest('.scroll-zoom-box');
+        if (zoomBox) {
+          e.preventDefault();
+          let currentScale = parseFloat(zoomBox.dataset.scale || '1');
+          if (e.deltaY < 0) {
+            currentScale = Math.min(1.8, currentScale + 0.1);
+          } else {
+            currentScale = Math.max(0.6, currentScale - 0.1);
+          }
+          zoomBox.dataset.scale = currentScale.toFixed(1);
+          const target = zoomBox.querySelector('.scroll-zoom-target');
+          const label = zoomBox.querySelector('.scroll-zoom-label');
+          if (target) target.style.transform = `scale(${currentScale})`;
+          if (label) label.textContent = `${Math.round(currentScale * 100)}%`;
+        }
+      }, { passive: false });
+    },
+
+    /* 5. Drag and Drop Arena */
+    initDragDropArena: function () {
+      let draggedElement = null;
+
+      document.addEventListener('dragstart', (e) => {
+        const item = e.target.closest('.draggable-chip');
+        if (item) {
+          draggedElement = item;
+          item.classList.add('is-dragging');
+          e.dataTransfer.setData('text/plain', item.id || '');
+          if (window.SoundManager) window.SoundManager.playClick();
+        }
+      });
+
+      document.addEventListener('dragend', (e) => {
+        const item = e.target.closest('.draggable-chip');
+        if (item) {
+          item.classList.remove('is-dragging');
+          draggedElement = null;
+        }
+      });
+
+      document.addEventListener('dragover', (e) => {
+        const targetZone = e.target.closest('.drag-target-zone, .drag-source-zone');
+        if (targetZone) {
+          e.preventDefault();
+          targetZone.classList.add('is-dragover');
+        }
+      });
+
+      document.addEventListener('dragleave', (e) => {
+        const targetZone = e.target.closest('.drag-target-zone, .drag-source-zone');
+        if (targetZone) {
+          targetZone.classList.remove('is-dragover');
+        }
+      });
+
+      document.addEventListener('drop', (e) => {
+        const targetZone = e.target.closest('.drag-target-zone, .drag-source-zone');
+        if (targetZone && draggedElement) {
+          e.preventDefault();
+          targetZone.classList.remove('is-dragover');
+          targetZone.appendChild(draggedElement);
+          if (window.SoundManager) window.SoundManager.playPop();
+
+          const arena = targetZone.closest('.drag-drop-arena');
+          if (arena) {
+            const targetItems = arena.querySelectorAll('.drag-target-zone .draggable-chip').length;
+            const feedback = arena.querySelector('.drag-drop-feedback');
+            if (feedback) {
+              if (targetItems >= 3) {
+                feedback.innerHTML = `🎉 <strong>Tuyệt vời!</strong> Em đã kéo thả thành công toàn bộ ${targetItems} đối tượng! (+15 XP)`;
+                if (window.SoundManager) window.SoundManager.playSuccess();
+              } else {
+                feedback.innerHTML = `👍 Đã chuyển ${targetItems} đối tượng vào vị trí mới!`;
+              }
+            }
+          }
+        }
+      });
+    },
+
+    /* 6. Mouse Bubble Popping Game */
+    initMouseBubbleGame: function () {
+      let gameInterval = null;
+      let timerInterval = null;
+      let score = 0;
+      let timeLeft = 30;
+      let isPlaying = false;
+
+      document.addEventListener('click', (e) => {
+        const startBtn = e.target.closest('.bubble-game-start-btn');
+        if (startBtn) {
+          const gameWrapper = startBtn.closest('.bubble-game-wrapper');
+          const gameBoard = gameWrapper?.querySelector('.bubble-game-board');
+          const scoreEl = gameWrapper?.querySelector('.game-score-val');
+          const timeEl = gameWrapper?.querySelector('.game-time-val');
+          const feedbackEl = gameWrapper?.querySelector('.game-feedback-text');
+
+          if (!gameBoard || isPlaying) return;
+
+          isPlaying = true;
+          score = 0;
+          timeLeft = 30;
+          startBtn.disabled = true;
+          if (scoreEl) scoreEl.textContent = '0';
+          if (timeEl) timeEl.textContent = '30s';
+          if (feedbackEl) feedbackEl.innerHTML = '⚡ <em>Bấm thật nhanh vào các bong bóng đang xuất hiện!</em>';
+          gameBoard.innerHTML = '';
+
+          const spawnBubble = () => {
+            if (!isPlaying) return;
+            const bubble = document.createElement('div');
+            bubble.className = 'game-target-bubble';
+            const emojis = ['🎈', '🎯', '⭐', '💎', '🚀'];
+            bubble.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+            const maxX = Math.max(10, gameBoard.clientWidth - 70);
+            const maxY = Math.max(10, gameBoard.clientHeight - 70);
+            bubble.style.left = `${Math.floor(Math.random() * maxX)}px`;
+            bubble.style.top = `${Math.floor(Math.random() * maxY)}px`;
+
+            bubble.addEventListener('click', () => {
+              score += 10;
+              if (scoreEl) scoreEl.textContent = score;
+              if (window.SoundManager) window.SoundManager.playPop();
+              bubble.remove();
+            });
+
+            gameBoard.appendChild(bubble);
+
+            setTimeout(() => {
+              if (bubble.parentNode) bubble.remove();
+            }, 2200);
+          };
+
+          gameInterval = setInterval(spawnBubble, 650);
+
+          timerInterval = setInterval(() => {
+            timeLeft--;
+            if (timeEl) timeEl.textContent = `${timeLeft}s`;
+            if (timeLeft <= 0) {
+              clearInterval(timerInterval);
+              clearInterval(gameInterval);
+              isPlaying = false;
+              startBtn.disabled = false;
+              gameBoard.innerHTML = '';
+              if (feedbackEl) {
+                feedbackEl.innerHTML = `🏆 <strong>Hoàn thành!</strong> Em ghi được <strong>${score} điểm</strong>! Phản xạ chuột rất tuyệt vời!`;
+              }
+              if (window.SoundManager) window.SoundManager.playSuccess();
+              document.dispatchEvent(new CustomEvent('lesson:xp', {
+                detail: { amount: 20, reason: 'mouse_bubble_game' }
+              }));
+            }
+          }, 1000);
         }
       });
     }

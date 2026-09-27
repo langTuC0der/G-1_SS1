@@ -202,6 +202,27 @@ body.mode-slide .edu-card__body {
   gap: var(--space-4);
 }
 
+/* Card Boss Game (Đại chiến Đập Chuột) — Chiếm trọn slide không bị khoảng trắng */
+body.mode-slide .edu-card--boss,
+body.mode-slide .edu-card:has(.whack-game-container) {
+  padding: 16px 28px 20px;
+}
+
+body.mode-slide .edu-card--boss .edu-card__header,
+body.mode-slide .edu-card:has(.whack-game-container) .edu-card__header {
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+}
+
+body.mode-slide .edu-card--boss .edu-card__body,
+body.mode-slide .edu-card:has(.whack-game-container) .edu-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 0;
+}
+
 /* Fullscreen Mode Enhancements */
 :fullscreen .presentation-bar,
 :-webkit-full-screen .presentation-bar {
@@ -220,3 +241,11 @@ body.mode-slide .edu-card__body {
   min-height: calc(100vh - 135px);
   padding: 32px 48px;
 }
+
+:fullscreen body.mode-slide .edu-card--boss,
+:fullscreen body.mode-slide .edu-card:has(.whack-game-container),
+:-webkit-full-screen body.mode-slide .edu-card--boss,
+:-webkit-full-screen body.mode-slide .edu-card:has(.whack-game-container) {
+  padding: 20px 36px 24px;
+}
+

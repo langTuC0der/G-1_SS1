@@ -148,6 +148,99 @@
 
       osc.start();
       osc.stop(ctx.currentTime + 0.17);
+    },
+
+    /* Âm đập búa trúng chuột (Whack hit) */
+    playWhack: function () {
+      if (this.muted) return;
+      const ctx = this.getAudioContext();
+      if (!ctx) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(280, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(70, ctx.currentTime + 0.09);
+
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.11);
+    },
+
+    /* Âm phá giáp Double Hit */
+    playDoubleWhack: function () {
+      if (this.muted) return;
+      const ctx = this.getAudioContext();
+      if (!ctx) return;
+
+      [180, 320].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.05);
+        osc.frequency.exponentialRampToValueAtTime(90, ctx.currentTime + i * 0.05 + 0.07);
+
+        gain.gain.setValueAtTime(0.18, ctx.currentTime + i * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.05 + 0.08);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + i * 0.05);
+        osc.stop(ctx.currentTime + i * 0.05 + 0.09);
+      });
+    },
+
+    /* Âm nổ bom khi đập nhầm chuột bom */
+    playExplosion: function () {
+      if (this.muted) return;
+      const ctx = this.getAudioContext();
+      if (!ctx) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.35);
+
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.38);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.4);
+    },
+
+    /* Âm nhặt chuột vàng may mắn */
+    playGoldenChime: function () {
+      if (this.muted) return;
+      const ctx = this.getAudioContext();
+      if (!ctx) return;
+
+      [1046.5, 1318.5, 1567.98, 2093.0].forEach((f, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.06);
+
+        gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.06 + 0.18);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(ctx.currentTime + i * 0.06);
+        osc.stop(ctx.currentTime + i * 0.06 + 0.2);
+      });
     }
   };
 

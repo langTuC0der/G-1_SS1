@@ -596,14 +596,22 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-energy), var(--color-primary));
+  background: linear-gradient(90deg, var(--color-energy), var(--color-primary), #06b6d4, var(--color-energy));
+  background-size: 300% 100%;
   border-radius: var(--radius-full);
   width: 0%;
   transition: width var(--transition-slow);
+  animation: progressFillShimmer 4s linear infinite;
+}
+
+@keyframes progressFillShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .progress-fill--success {
-  background: linear-gradient(90deg, #34d399, var(--color-success));
+  background: linear-gradient(90deg, #34d399, var(--color-success), #10b981, #34d399);
+  background-size: 300% 100%;
 }
 
 .xp-badge {
@@ -1251,17 +1259,24 @@ body.mode-slide .slide-controls-bar {
   border-radius: var(--radius-md);
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
 .choice-card:hover {
   border-color: var(--color-primary);
-  background: var(--color-primary-light);
-  transform: translateY(-2px);
+  background: #faf5ff;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.14);
+}
+
+.choice-card:hover > span:first-child {
+  transform: scale(1.2) translateY(-2px);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .choice-card.is-active {
@@ -1269,6 +1284,14 @@ body.mode-slide .slide-controls-bar {
   background: var(--color-primary-light);
   color: var(--color-primary);
   font-weight: 700;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.2);
+  animation: cardPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cardPop {
+  0% { transform: scale(0.96); }
+  60% { transform: scale(1.04); }
+  100% { transform: scale(1); }
 }
 
 /* ==========================================================================
@@ -1991,3 +2014,1151 @@ body.mode-slide .slide-controls-bar {
   font-size: 1.1rem;
   flex-shrink: 0;
 }
+
+/* ==========================================================================
+   27. MOUSE MASTERY & LAB SUITE (Suite Chuột & Bài tập Buổi 02)
+   ========================================================================== */
+
+/* Thẻ Giải phẫu Chuột (Mouse Anatomy Card) */
+.mouse-anatomy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.mouse-anatomy-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.mouse-anatomy-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-energy));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mouse-anatomy-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.12);
+}
+
+.mouse-anatomy-card:hover::before {
+  opacity: 1;
+}
+
+/* Tư thế cầm chuột (Ergonomics Grid) */
+.mouse-grip-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grip-card {
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s ease;
+}
+
+.grip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.grip-card--correct {
+  border-color: var(--color-success);
+  background: #f0fdf4;
+}
+
+.grip-card--wrong {
+  border-color: var(--color-danger);
+  background: #fff1f2;
+}
+
+/* Khu thử nghiệm Click (Mouse Click Tester Sandbox) */
+.click-tester-box {
+  background: #ffffff;
+  border: 2.5px dashed #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.click-tester-box:hover {
+  border-color: var(--color-primary);
+  background: #eff6ff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.12);
+}
+
+.click-tester-box:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.click-tester-counter {
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.click-tester-box:active .click-tester-counter {
+  transform: scale(1.3);
+  color: var(--color-energy) !important;
+}
+
+/* Hộp quà Double Click */
+.double-click-gift {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(234, 88, 12, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+  position: relative;
+  animation: giftIdleWiggle 4s ease-in-out infinite;
+}
+
+@keyframes giftIdleWiggle {
+  0%, 70%, 100% { transform: rotate(0deg) scale(1); }
+  75% { transform: rotate(-8deg) scale(1.04); }
+  80% { transform: rotate(8deg) scale(1.05); }
+  85% { transform: rotate(-5deg) scale(1.03); }
+  90% { transform: rotate(4deg) scale(1.02); }
+  95% { transform: rotate(0deg) scale(1); }
+}
+
+.double-click-gift:hover {
+  transform: scale(1.1) rotate(0deg);
+  box-shadow: 0 16px 40px rgba(234, 88, 12, 0.5), 0 0 24px rgba(245, 158, 11, 0.6);
+  animation: giftExcitedJiggle 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes giftExcitedJiggle {
+  0% { transform: scale(1.08) rotate(-4deg); }
+  100% { transform: scale(1.12) rotate(4deg); }
+}
+
+.double-click-gift.is-opened {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 14px 35px rgba(16, 185, 129, 0.4), 0 0 30px rgba(52, 211, 153, 0.6);
+  transform: scale(1.1) rotate(3deg);
+  animation: giftOpenedPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes giftOpenedPop {
+  0% { transform: scale(0.8) rotate(-10deg); opacity: 0.8; }
+  50% { transform: scale(1.22) rotate(6deg); filter: brightness(1.25); }
+  100% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+}
+
+/* Mô phỏng Context Menu Chuột phải (Mock Context Menu) */
+.mock-context-zone {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: context-menu;
+}
+
+.mock-context-menu {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  min-width: 190px;
+  display: none;
+  z-index: 20;
+  text-align: left;
+}
+
+.mock-context-menu.is-visible {
+  display: block;
+  animation: popIn 0.15s ease-out;
+}
+
+.mock-menu-item {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mock-menu-item:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.mock-menu-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 4px 0;
+}
+
+/* Khu vực Kéo & Thả tương tác (Drag & Drop Sandbox) */
+.drag-drop-arena {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+}
+
+.drag-source-zone, .drag-target-zone {
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.drag-target-zone.is-dragover {
+  border-color: var(--color-primary);
+  background: #eff6ff;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.25);
+  animation: targetPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes targetPulse {
+  0% { border-color: #3b82f6; }
+  100% { border-color: #8b5cf6; }
+}
+
+.draggable-chip {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: grab;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.draggable-chip:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.16);
+  color: var(--color-primary);
+}
+
+.draggable-chip.is-dragging {
+  opacity: 0.6;
+  cursor: grabbing;
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Thư viện 6 Hình dạng Con trỏ chuột (Cursor Gallery) */
+.cursor-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.cursor-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+}
+
+.cursor-card:hover .cursor-icon-box {
+  transform: scale(1.15) rotate(-6deg);
+  background: var(--color-primary-light);
+  transition: all 0.2s ease;
+}
+
+.cursor-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+/* Mini Game Luyện Chuột (Mouse Bubble Popping Game) */
+.bubble-game-board {
+  position: relative;
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+  border: 2px solid var(--border-soft);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  height: 290px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.game-target-bubble {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #38bdf8, #4f46e5 75%, #312e81 100%);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  cursor: crosshair;
+  animation: bubbleEmerge 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), bubbleWobble 2s ease-in-out infinite alternate;
+  user-select: none;
+  transition: transform 0.1s;
+}
+
+@keyframes bubbleEmerge {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  70% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes bubbleWobble {
+  0% { transform: translateY(0px) scale(1, 1); }
+  50% { transform: translateY(-4px) scale(1.03, 0.97); }
+  100% { transform: translateY(3px) scale(0.97, 1.03); }
+}
+
+.game-target-bubble:hover {
+  transform: scale(1.2) !important;
+  box-shadow: 0 10px 28px rgba(14, 165, 233, 0.6), 0 0 20px rgba(56, 189, 248, 0.8);
+}
+
+.game-target-bubble:active {
+  transform: scale(0.9) !important;
+}
+
+.game-target-bubble.bubble-popped {
+  animation: bubblePopEffect 0.25s forwards cubic-bezier(0.1, 0.9, 0.2, 1);
+  pointer-events: none;
+}
+
+@keyframes bubblePopEffect {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.7; filter: brightness(1.5); }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.game-hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   28. WHAC-A-MOLE MASTER ARENA (Đại Chiến Đập Chuột Luyện Skill)
+   ========================================================================== */
+
+.whack-game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  background: #ffffff;
+  border: 2px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+  user-select: none;
+  position: relative;
+}
+
+/* Thanh điều khiển trên cùng (HUD) */
+.whack-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-bottom: 2px solid var(--border-soft);
+  gap: 16px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.whack-hud-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.whack-hud-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-soft);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.whack-hud-badge .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.whack-hud-badge .value {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  min-width: 40px;
+  text-align: right;
+}
+
+.whack-hud-badge--combo .value {
+  color: #ea580c;
+}
+
+.whack-hud-badge--time .value {
+  color: var(--color-danger);
+}
+
+/* Sân cỏ đấu trường (Grass Arena) — Tự co giãn chiếm toàn bộ chiều cao slide */
+.whack-arena {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 440px;
+  background:
+    radial-gradient(circle at 50% 30%, #86efac 0%, #4ade80 40%, #22c55e 75%, #16a34a 100%);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+/* Lưới chấm cỏ xanh tinh tế */
+.whack-arena::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(22, 101, 52, 0.15) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* Lưới 9 hang chuột (3x3 grid) — Tỉ lệ chuẩn cân đối */
+.whack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px 28px;
+  width: 100%;
+  max-width: 900px;
+  z-index: 2;
+  position: relative;
+}
+
+/* ==========================================================================
+   HIỆU ỨNG HANG CHUỘT 3D CHI TIẾT (3D Crater, Dirt Mound & Grass)
+   ========================================================================== */
+
+/* Khung toàn bộ hang chuột (Mole Hole) */
+.mole-hole {
+  position: relative;
+  width: 100%;
+  height: 135px;
+  max-width: 250px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  user-select: none;
+  overflow: visible;
+  transition: transform 0.15s ease-out;
+}
+
+/* 1. Bóng đổ tiếp xúc nền cỏ tạo cảm giác gò đất nổi 3D thực thụ */
+.hole-ground-shadow {
+  position: absolute;
+  bottom: 0px;
+  left: 4%;
+  right: 4%;
+  height: 40px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(13, 50, 20, 0.45) 0%, rgba(13, 50, 20, 0.15) 55%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 2. Gò đất đùn cao phía sau lòng hang */
+.hole-mound-back {
+  position: absolute;
+  bottom: 8px;
+  left: 6%;
+  right: 6%;
+  height: 56px;
+  background: radial-gradient(ellipse at 50% 25%, #854522 0%, #5d2e14 55%, #3a1a0b 100%);
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.22);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 3. Miệng hố đen sâu thẳm dưới lòng đất */
+.hole-pit {
+  position: absolute;
+  bottom: 14px;
+  left: 16%;
+  right: 16%;
+  height: 44px;
+  background: radial-gradient(ellipse at 50% 65%, #050201 0%, #150803 55%, #2a1106 100%);
+  border-radius: 50%;
+  box-shadow: inset 0 12px 18px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(255, 255, 255, 0.1);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.15);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 4. Khoang trồi sụt của chuột (Chỉ che giấu phần thân chìm dưới lòng đất) */
+.mole-chamber {
+  position: absolute;
+  bottom: 16px;
+  left: 8%;
+  right: 8%;
+  height: 125px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HIỆU ỨNG CHUYỂN CẢNH NHÂN VẬT CHUỘT (Spring Physics & Living Idle)
+   ========================================================================== */
+
+/* Nhân vật Chuột (Mole) */
+.mole {
+  position: absolute;
+  bottom: 0px;
+  width: 98px;
+  height: 106px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transform: translateY(115%);
+  pointer-events: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  will-change: transform, filter;
+}
+
+/* SVG bao bọc hình ảnh nhân vật */
+.mole-svg-wrap {
+  width: 96px;
+  height: 98px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+/* 1. Chuột nhô lên: Hiệu ứng lò xo nảy (Squash & Stretch) + Nhịp thở sống động */
+.mole.is-popped {
+  animation:
+    moleEmerge 0.38s cubic-bezier(0.25, 1.45, 0.55, 1) forwards,
+    moleIdle 1.8s ease-in-out 0.38s infinite alternate;
+}
+
+/* 2. Chuột lặn xuống êm ái khi hết thời gian */
+.mole.is-hiding {
+  animation: moleRetreat 0.26s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+/* 3. Chuột bị đập trúng: Nén dẹp, lóe sáng và lùi xuống */
+.mole.is-whacked {
+  animation: moleWhacked 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+/* Keyframes: Nhảy vọt lên lò xo mượt mà */
+@keyframes moleEmerge {
+  0% {
+    transform: translateY(115%) scale(0.85, 1.25);
+    opacity: 0.8;
+  }
+  60% {
+    transform: translateY(-36px) scale(1.1, 0.92);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-28px) scale(0.96, 1.04);
+  }
+  100% {
+    transform: translateY(-32px) scale(1, 1);
+  }
+}
+
+/* Keyframes: Nhịp thở sống động và nghiêng đầu quan sát khi đang nhô lên */
+@keyframes moleIdle {
+  0% {
+    transform: translateY(-32px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-35px) rotate(2.5deg);
+  }
+  100% {
+    transform: translateY(-32px) rotate(-2deg);
+  }
+}
+
+/* Keyframes: Thụt lùi xuống hang nhanh gọn */
+@keyframes moleRetreat {
+  0% {
+    transform: translateY(-32px) scale(1, 1);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-37px) scale(1.08, 0.94);
+  }
+  100% {
+    transform: translateY(115%) scale(0.86, 1.2);
+    opacity: 0.5;
+  }
+}
+
+/* Keyframes: Bị đập trúng bẹp dí & lóe sáng */
+@keyframes moleWhacked {
+  0% {
+    transform: translateY(-32px) scale(1);
+    filter: brightness(1.6) drop-shadow(0 0 14px rgba(255, 255, 255, 0.9));
+  }
+  30% {
+    transform: translateY(-10px) scale(1.35, 0.55);
+    filter: brightness(1.2) hue-rotate(-20deg);
+  }
+  60% {
+    transform: translateY(15px) scale(0.95, 1.08);
+  }
+  100% {
+    transform: translateY(115%) scale(0.8);
+    opacity: 0.3;
+  }
+}
+
+/* 5. Bờ đất tự nhiên phía trước che chân chuột */
+.hole-dirt-front {
+  position: absolute;
+  bottom: 4px;
+  left: 8%;
+  right: 8%;
+  height: 35px;
+  background: linear-gradient(180deg, #8a4822 0%, #5d2e14 45%, #3a1a0b 100%);
+  border-radius: 50% 50% 45% 45% / 40% 40% 60% 60%;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35), inset 0 2.5px 5px rgba(255, 255, 255, 0.22);
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Vân đất sỏi gồ ghề 3D */
+.dirt-front-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 25% 40%, rgba(255, 255, 255, 0.18) 2px, transparent 2px),
+    radial-gradient(ellipse at 75% 55%, rgba(0, 0, 0, 0.28) 3px, transparent 3px),
+    radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 18px;
+  opacity: 0.75;
+}
+
+/* 6. Khóm cỏ tiền cảnh viền quanh miệng hang */
+.hole-grass-tuft {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hole-grass-left {
+  bottom: 10px;
+  left: 6px;
+  font-size: 1.25rem;
+  transform: rotate(-10deg);
+}
+
+.hole-grass-right {
+  bottom: 10px;
+  right: 6px;
+  font-size: 1.25rem;
+  transform: rotate(10deg) scaleX(-1);
+}
+
+.hole-grass-center {
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* Cỏ lay động tự nhiên khi chuột nhô lên */
+.mole-hole.is-popping .hole-grass-left {
+  transform: rotate(-24deg) scale(1.18);
+}
+
+.mole-hole.is-popping .hole-grass-right {
+  transform: rotate(24deg) scaleX(-1) scale(1.18);
+}
+
+/* Rung miệng hang khi bị búa đập */
+.hole-whacked-impact {
+  animation: holeImpactShake 0.32s ease-in-out;
+}
+
+@keyframes holeImpactShake {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(5px); }
+  55% { transform: translateY(-3px); }
+  80% { transform: translateY(1px); }
+}
+
+/* ==========================================================================
+   HIỆU ỨNG BỤI ĐẤT TUNG TÓE KHI CHUỘT NHẢY KHỎI HANG (Dust Cloud Burst)
+   ========================================================================== */
+
+.hole-dust-container {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.dust-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dust-p1 {
+  width: 11px;
+  height: 9px;
+  background: #a16207;
+  left: 20%;
+  bottom: 6px;
+}
+
+.dust-p2 {
+  width: 8px;
+  height: 6px;
+  background: #d97706;
+  left: 32%;
+  bottom: 10px;
+}
+
+.dust-p3 {
+  width: 12px;
+  height: 9px;
+  background: #92400e;
+  right: 22%;
+  bottom: 6px;
+}
+
+.dust-p4 {
+  width: 7px;
+  height: 7px;
+  background: #b45309;
+  right: 34%;
+  bottom: 10px;
+}
+
+.hole-dust-container.is-active .dust-p1 {
+  animation: dustBurstLeft1 0.45s ease-out forwards;
+}
+.hole-dust-container.is-active .dust-p2 {
+  animation: dustBurstLeft2 0.42s ease-out 0.04s forwards;
+}
+.hole-dust-container.is-active .dust-p3 {
+  animation: dustBurstRight1 0.45s ease-out forwards;
+}
+.hole-dust-container.is-active .dust-p4 {
+  animation: dustBurstRight2 0.42s ease-out 0.04s forwards;
+}
+
+@keyframes dustBurstLeft1 {
+  0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  35% { opacity: 0.95; transform: translate(-22px, -18px) scale(1.3); }
+  100% { opacity: 0; transform: translate(-36px, -8px) scale(0.4); }
+}
+@keyframes dustBurstLeft2 {
+  0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  35% { opacity: 0.85; transform: translate(-14px, -24px) scale(1.1); }
+  100% { opacity: 0; transform: translate(-22px, -16px) scale(0.3); }
+}
+@keyframes dustBurstRight1 {
+  0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  35% { opacity: 0.95; transform: translate(22px, -18px) scale(1.3); }
+  100% { opacity: 0; transform: translate(36px, -8px) scale(0.4); }
+}
+@keyframes dustBurstRight2 {
+  0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+  35% { opacity: 0.85; transform: translate(14px, -24px) scale(1.1); }
+  100% { opacity: 0; transform: translate(22px, -16px) scale(0.3); }
+}
+
+
+/* Điểm số bay lên khi đập (Floating Score) */
+.whack-float-score {
+  position: absolute;
+  font-size: 1.35rem;
+  font-weight: 900;
+  pointer-events: none;
+  z-index: 10;
+  animation: floatScore 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.whack-float-score--bonus { color: #facc15; }
+.whack-float-score--normal { color: #ffffff; }
+.whack-float-score--bomb { color: #f43f5e; }
+.whack-float-score--magic { color: #c084fc; }
+
+@keyframes floatScore {
+  0% { transform: translate(-50%, 0) scale(0.7); opacity: 0; }
+  25% { transform: translate(-50%, -20px) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -55px) scale(1); opacity: 0; }
+}
+
+/* Rung màn hình khi nổ bom */
+.screen-shake {
+  animation: screenShake 0.4s ease-in-out;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 6px); }
+  40% { transform: translate(8px, -6px); }
+  60% { transform: translate(-5px, 4px); }
+  80% { transform: translate(5px, -2px); }
+}
+
+/* Búa đập chuột tùy biến (Custom Hammer) */
+.whack-hammer {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-30%, -70%) rotate(0deg);
+  transition: transform 0.05s ease-out;
+  display: none;
+  font-size: 3rem;
+  filter: drop-shadow(2px 6px 8px rgba(0, 0, 0, 0.35));
+}
+
+.whack-hammer.is-swinging {
+  transform: translate(-30%, -70%) rotate(-45deg) scale(0.9);
+}
+
+/* Bảng hướng dẫn nhận diện chuột (Mole Legend Bar) */
+.whack-mole-legend {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 10px 24px;
+  background: #ffffff;
+  border-top: 1.5px solid var(--border-soft);
+  flex-shrink: 0;
+}
+
+.whack-legend-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-soft);
+  background: var(--bg-page-secondary);
+}
+
+.whack-legend-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.whack-legend-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.whack-legend-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.whack-legend-skill {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Màn hình Bắt đầu & Kết thúc Trò chơi (Overlay Screen) */
+.whack-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  color: #ffffff;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.whack-overlay-dialog {
+  background: #ffffff;
+  color: var(--text-primary);
+  border-radius: 20px;
+  padding: 20px 28px;
+  max-width: 580px;
+  width: 95%;
+  max-height: 94%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.whack-overlay-dialog h3 {
+  font-size: 1.35rem;
+  font-weight: 900;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.whack-diff-selector {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.whack-diff-btn {
+  flex: 1;
+  padding: 7px 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-soft);
+  background: var(--bg-page-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.whack-diff-btn.is-active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* Star Rating trên màn hình Game Over */
+.whack-stars-row {
+  display: flex;
+  gap: 6px;
+  font-size: 2rem;
+}
+
+/* ==========================================================================
+   29. LIVELY MICRO-ANIMATIONS & INTERACTION POLISH (Họat ảnh sinh động)
+   ========================================================================== */
+
+/* Scroll & Zoom Rocket Animation */
+.scroll-zoom-box {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.scroll-zoom-box:hover {
+  border-color: var(--color-energy) !important;
+  background: #fffbeb !important;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+}
+
+.scroll-zoom-target {
+  display: inline-block;
+  animation: rocketBobbing 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes rocketBobbing {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-4deg); }
+}
+
+/* Checklist Items Spring & Hover */
+.checklist-item {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.checklist-item:hover {
+  transform: translateX(4px);
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+}
+
+.checklist-item.is-completed {
+  animation: checkSpring 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes checkSpring {
+  0% { transform: scale(0.98); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Quiz Option Interactive Hover */
+.quiz-option {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quiz-option:hover:not(:disabled) {
+  transform: translateX(6px);
+  border-color: var(--color-primary);
+  background: #faf5ff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.12);
+}
+
+/* Primary Button Dynamic Polish */
+.btn--primary {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+.btn--primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn--energy {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn--energy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.btn--energy:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* 3D Mouse Visualizer Button Active */
+.mouse-zone {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mouse-zone.is-active,
+.mouse-zone:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25), 0 0 16px rgba(79, 70, 229, 0.6) !important;
+}
+
+
+

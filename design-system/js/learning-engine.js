@@ -27,6 +27,16 @@
         if (window.QuizManager) window.QuizManager.init('static');
       }
 
+      // Khởi tạo Game Đập Chuột nếu có trong slide
+      if (window.WhackAMoleGame) {
+        document.querySelectorAll('.whack-game-container').forEach(c => {
+          if (!c.dataset.initialized) {
+            new window.WhackAMoleGame(c);
+            c.dataset.initialized = 'true';
+          }
+        });
+      }
+
       this.initCheatsheetDrawer();
       this.initSlideMode();
       this.initPresentationBar();
