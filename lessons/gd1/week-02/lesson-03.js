@@ -604,55 +604,74 @@
         `
       },
 
-      /* SLIDE 11: INTERACTIVE TYPING SANDBOX */
+      /* SLIDE 11: TYPING SPACE DEFENDER MINI-GAME */
       {
         id: 'w02-l03-s11',
         type: 'lab',
-        icon: '💻',
-        eyebrow: 'THỰC HÀNH TƯƠNG TÁC',
-        title: 'Khu vực Luyện gõ Trực tiếp (Typing Sandbox)',
-        badge: { type: 'energy', text: 'Tương tác Web' },
+        icon: '🚀',
+        eyebrow: 'ĐẤU TRƯỜNG PHẢN XẠ',
+        title: 'Mini Game: Typing Space Defender (Bắn Thiên Thạch Từ Vựng)',
+        badge: { type: 'energy', text: 'Game Bắn Chữ 3D' },
         contentHtml: `
-          <p class="text-secondary mb-3">
-            Em hãy bấm chuột vào ô nhập văn bản bên dưới và thử gõ một vài câu tiếng Việt để kiểm tra tốc độ và độ chuẩn xác của bộ gõ nhé:
-          </p>
+          <div class="callout callout--info mb-3">
+            <h4 class="callout__title">🎮 Luật chơi Chiến dịch Không gian:</h4>
+            <p style="margin: 0; line-height: 1.6;">
+              Các thiên thạch mang từ vựng đang rơi từ trên cao xuống căn cứ phòng thủ!  
+              Em hãy <strong>gõ đúng các ký tự trên bàn phím</strong> để khẩu pháo la-de tự động khóa mục tiêu và bắn đạn tiêu diệt từng chữ cái. Phá hủy hết từ để thiên thạch nổ tung nhận điểm thưởng và giữ an toàn cho khiên phòng thủ!
+            </p>
+          </div>
 
-          <div class="typing-sandbox-card p-4 bg-card rounded border mb-4">
-            <div class="d-flex justify-between items-center mb-3">
-              <div class="d-flex items-center gap-2">
-                <span class="badge badge--primary">Câu mẫu luyện tập:</span>
-                <strong style="color: var(--color-primary); font-size: 1.05rem;">"Học sinh lớp 7 làm chủ bàn phím máy tính."</strong>
+          <!-- Container Mini-Game Bắn Chữ -->
+          <div class="typing-game-container mb-4">
+            <div class="typing-hud">
+              <div class="typing-hud-item">
+                <span>Điểm:</span>
+                <span class="typing-hud-val typing-score-val">0</span>
               </div>
-              <button class="btn btn--secondary btn--sm" onclick="const input = document.getElementById('demo-typing-input'); if(input) { input.value = ''; input.focus(); }">Xóa trắng ô</button>
+              <div class="typing-hud-item">
+                <span>Khiên:</span>
+                <span class="typing-hud-val typing-hp-val">❤️❤️❤️</span>
+              </div>
+              <div class="typing-hud-item">
+                <span>Combo:</span>
+                <span class="typing-hud-val typing-streak-val">x0</span>
+              </div>
+              <div class="typing-hud-item">
+                <span>Tốc độ:</span>
+                <span class="typing-hud-val typing-wpm-val">0 WPM</span>
+              </div>
+              <div class="typing-hud-item">
+                <select class="typing-level-select">
+                  <option value="level1">Cấp 1: Phím F, J & Home Row</option>
+                  <option value="level2">Cấp 2: Từ vựng Tin học</option>
+                  <option value="level3">Cấp 3: Thuật ngữ Lập trình</option>
+                </select>
+              </div>
             </div>
 
-            <textarea 
-              id="demo-typing-input" 
-              rows="3" 
-              placeholder="👉 Bấm chuột vào đây và bắt đầu gõ thử câu mẫu bên trên..."
-              style="width: 100%; padding: 12px; font-size: 1.1rem; border: 2px solid var(--border-soft); border-radius: 8px; font-family: inherit; resize: none; transition: border-color 0.2s;"
-              onfocus="this.style.borderColor='var(--color-primary)';"
-              onblur="this.style.borderColor='var(--border-soft)';"
-              oninput="
-                const val = this.value;
-                const counter = document.getElementById('typing-char-count');
-                if (counter) counter.innerText = val.length + ' ký tự | ' + (val.trim() ? val.trim().split(/\\s+/).length : 0) + ' từ';
-                if (val.includes('Học sinh lớp 7 làm chủ bàn phím máy tính.')) {
-                  const alert = document.getElementById('typing-success-msg');
-                  if (alert) alert.style.display = 'block';
-                  if (window.SoundManager) window.SoundManager.playSuccess();
-                }
-              "
-            ></textarea>
+            <div class="typing-arena">
+              <div class="typing-cannon">🚀</div>
 
-            <div class="d-flex justify-between items-center mt-2 text-muted" style="font-size: 0.85rem;">
-              <span id="typing-char-count">0 ký tự | 0 từ</span>
-              <span>Gợi ý gõ Telex: <code>Hocj sinh lowps 7 lamf chur banf phims mayis tinhs.</code></span>
+              <div class="typing-overlay">
+                <div class="typing-dialog">
+                  <div style="font-size: 3.5rem;">☄️🚀</div>
+                  <h3 style="color: #38bdf8; margin: 10px 0 8px;">TYPING SPACE DEFENDER</h3>
+                  <p class="text-secondary" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+                    Hãy đặt tay lên 2 phím gai <strong>F và J</strong> trên hàng Home Row. Khi thiên thạch rơi xuống, em chỉ cần gõ đúng ký tự đầu tiên để nòng pháo tự động bắn la-de!
+                  </p>
+                  <button class="btn btn--energy font-bold typing-start-btn" style="padding: 12px 32px; font-size: 1.1rem;">
+                    ⚡ BẮT ĐẦU CHIẾN DỊCH!
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div id="typing-success-msg" class="callout callout--success mt-3" style="display: none;">
-              <strong>🎉 Xuất sắc!</strong> Em đã gõ hoàn toàn chính xác câu mẫu tiếng Việt có dấu chuẩn!
-            </div>
+          <div class="p-3 rounded bg-page-secondary border">
+            <strong class="text-primary">💡 Mẹo đạt điểm cao:</strong>
+            <span class="text-secondary" style="font-size: 0.88rem;">
+              Luôn ưu tiên gõ những từ đang rơi xuống thấp nhất gần vạch đỏ phòng thủ! Giữ chuỗi Combo không gõ sai để nhân đôi số điểm thưởng!
+            </span>
           </div>
         `
       },

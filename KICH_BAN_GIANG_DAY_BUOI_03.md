@@ -59,8 +59,12 @@
 
 ---
 
-### CHẶNG 5: THỰC HÀNH MÁY THẬT & VIẾT BÀI GIỚI THIỆU (20 PHÚT)
-- **Thao tác Hands-on:**
+### CHẶNG 5: ĐẤU TRƯỜNG MINI GAME BẮN CHỮ & THỰC HÀNH MÁY THẬT (20 PHÚT)
+- **Đấu trường Mini Game Typing Space Defender (Slide 11):**
+  > *"Bây giờ là phần kịch tính nhất: **Chiến dịch Bảo vệ Căn cứ Không gian — Typing Space Defender**!  
+  > Các thiên thạch mang từ vựng đang lao từ trên đỉnh màn hình xuống. Em hãy đặt tay chuẩn lên 2 phím gai **F và J**. Khi thấy chữ xuất hiện, em chỉ cần gõ đúng các ký tự trên bàn phím: Nòng súng la-de sẽ tự động nhắm bắn và phá hủy từng chữ cái!  
+  > Mục tiêu của em là bảo vệ khiên năng lượng và đạt **từ 200 điểm trở lên** để nhận +30 XP thưởng. Em đã sẵn sàng chưa? Bấm nút BẮT ĐẦU CHIẾN DỊCH nào!"*
+- **Thực hành máy thật Notepad (Slide 12 - 15):**
   1. Học sinh bấm phím `Win`, gõ `notepad`, bấm `Enter` mở Notepad.
   2. Gõ câu chào và 4 dòng giới thiệu bản thân: Họ tên, tuổi, trường lớp, sở thích và ước mơ.
   3. Giáo viên quan sát màn hình chia sẻ, chỉnh sửa tư thế ngồi và cách đặt ngón tay.

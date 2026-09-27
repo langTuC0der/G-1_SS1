@@ -3160,5 +3160,249 @@ body.mode-slide .slide-controls-bar {
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25), 0 0 16px rgba(79, 70, 229, 0.6) !important;
 }
 
+/* ==========================================================================
+   TYPING SPACE DEFENDER MINI-GAME — Sci-Fi Arcade Style
+   ========================================================================== */
+
+.typing-game-container {
+  position: relative;
+  background: #0f172a;
+  border-radius: var(--radius-lg, 16px);
+  border: 2px solid rgba(99, 102, 241, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3), 0 0 20px rgba(99, 102, 241, 0.15);
+  overflow: hidden;
+  user-select: none;
+  font-family: inherit;
+}
+
+/* HUD Bar */
+.typing-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.95rem;
+  z-index: 10;
+  position: relative;
+}
+
+.typing-hud-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.typing-hud-val {
+  font-weight: 800;
+  font-family: monospace;
+  font-size: 1.15rem;
+  color: #38bdf8;
+}
+
+.typing-level-select {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Arena Field */
+.typing-arena {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  background: radial-gradient(circle at 50% 100%, #1e1b4b 0%, #090d16 100%);
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Starfield grid effect */
+.typing-arena::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 90px 80px, #38bdf8, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 150px 120px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 260px 40px, #fbbf24, rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 350px 200px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 450px 90px, #a855f7, rgba(0,0,0,0));
+  background-size: 550px 300px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Khiên phòng thủ ở đáy (Defense Shield Line) */
+.typing-arena::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #ef4444 20%, #38bdf8 50%, #ef4444 80%, transparent 100%);
+  box-shadow: 0 0 12px #38bdf8;
+  opacity: 0.7;
+}
+
+.typing-arena.is-breached {
+  animation: arenaFlash 0.3s ease-out;
+}
+
+@keyframes arenaFlash {
+  0% { box-shadow: inset 0 0 60px rgba(239, 68, 68, 0.8); }
+  100% { box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6); }
+}
+
+/* Thiên thạch từ vựng (Falling Word Item) */
+.falling-word-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  z-index: 5;
+  transition: filter 0.2s;
+}
+
+.falling-word-item .meteor-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.falling-word-item.is-targeted .meteor-body {
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.6), 0 4px 14px rgba(0, 0, 0, 0.5);
+  transform: scale(1.06);
+}
+
+.falling-word-item .word-text {
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.falling-word-item .word-text .typed {
+  color: #10b981;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+}
+
+.falling-word-item .word-text .untyped {
+  color: #f8fafc;
+}
+
+.falling-word-item.shake-error {
+  animation: wordShake 0.2s ease-in-out;
+}
+
+@keyframes wordShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* Pháo đài đáy (Cannon Defender) */
+.typing-cannon {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transform-origin: center bottom;
+  transition: transform 0.08s ease-out;
+  z-index: 6;
+  filter: drop-shadow(0 0 10px #38bdf8);
+}
+
+/* Đạn Laser (Laser Projectile) */
+.laser-projectile {
+  position: absolute;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8 0%, #ffffff 50%, #818cf8 100%);
+  box-shadow: 0 0 8px #38bdf8, 0 0 14px #818cf8;
+  transform-origin: 0 50%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Hạt nổ (Explosion Particles) */
+.explosion-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 8;
+  animation: particleBlow 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes particleBlow {
+  0% { transform: translate(0, 0) scale(1.5); opacity: 1; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
+/* Điểm bay popup (+ score float) */
+.score-popup-float {
+  position: absolute;
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fbbf24;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+  pointer-events: none;
+  z-index: 9;
+  animation: scoreFloat 0.7s ease-out forwards;
+}
+
+@keyframes scoreFloat {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-35px) scale(1); opacity: 0; }
+}
+
+/* Overlay & Start Dialog */
+.typing-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.typing-dialog {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg, 16px);
+  padding: 32px;
+  text-align: center;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+}
+
 
 
