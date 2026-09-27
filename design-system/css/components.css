@@ -3252,6 +3252,7 @@ body.mode-slide .slide-controls-bar {
   background: linear-gradient(90deg, transparent 0%, #ef4444 20%, #38bdf8 50%, #ef4444 80%, transparent 100%);
   box-shadow: 0 0 12px #38bdf8;
   opacity: 0.7;
+  pointer-events: none;
 }
 
 .typing-arena.is-breached {
@@ -3389,10 +3390,12 @@ body.mode-slide .slide-controls-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20;
+  z-index: 30;
+  pointer-events: auto;
 }
 
 .typing-dialog {
+  position: relative;
   background: #1e293b;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-lg, 16px);
@@ -3402,6 +3405,25 @@ body.mode-slide .slide-controls-bar {
   width: 90%;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   color: #ffffff;
+  z-index: 35;
+  pointer-events: auto;
+}
+
+.typing-start-btn {
+  position: relative;
+  z-index: 40;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.typing-start-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.5);
+}
+
+.typing-start-btn:active {
+  transform: translateY(0) scale(0.97);
 }
 
 

@@ -37,6 +37,13 @@
         });
       }
 
+      // Khởi tạo Game Bắn Chữ (Typing Shooter) nếu có trong slide
+      if (window.initTypingShooter) {
+        document.querySelectorAll('.typing-game-container').forEach(c => {
+          window.initTypingShooter(c);
+        });
+      }
+
       this.initCheatsheetDrawer();
       this.initSlideMode();
       this.initPresentationBar();
@@ -177,6 +184,15 @@
 
       // Cuộn nhẹ lên đầu
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Kích hoạt game Typing Shooter nếu slide có chứa game
+      const currentSlideEl = this.slideSections[index];
+      if (currentSlideEl && window.initTypingShooter) {
+        const gameContainer = currentSlideEl.querySelector('.typing-game-container');
+        if (gameContainer) {
+          window.initTypingShooter(gameContainer);
+        }
+      }
 
       if (playSound && window.SoundManager) {
         window.SoundManager.playPop();

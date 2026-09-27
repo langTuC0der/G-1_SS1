@@ -33,6 +33,9 @@
   class TypingShooterGame {
     constructor(containerElement) {
       this.container = containerElement;
+      this.container._typingShooterInstance = this;
+      window.TypingShooter = this;
+
       this.arenaEl = this.container.querySelector('.typing-arena');
       this.scoreEl = this.container.querySelector('.typing-score-val');
       this.hpEl = this.container.querySelector('.typing-hp-val');
@@ -183,7 +186,10 @@
 
     initEvents() {
       if (this.startBtn) {
-        this.startBtn.addEventListener('click', () => this.startGame());
+        this.startBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.startGame();
+        });
       }
 
       if (this.levelSelectEl) {
@@ -198,7 +204,7 @@
       // Lắng nghe gõ phím
       window.addEventListener('keydown', (e) => this.handleKeyDown(e));
 
-      // Bấm vào arena tự động kích hoạt
+      // Bấm vào arena tự động kích hoạt Audio
       if (this.arenaEl) {
         this.arenaEl.addEventListener('click', () => {
           this.getAudioContext();
@@ -265,7 +271,7 @@
 
       const arenaWidth = this.arenaEl ? this.arenaEl.clientWidth : 600;
       const margin = 60;
-      const x = margin + Math.random() * (arenaWidth - margin * 2 - 80);
+      const x = margin + Math.random() * Math.max(100, arenaWidth - margin * 2 - 100);
       const y = -30;
 
       let speed = 45; // pixel per second
@@ -302,7 +308,7 @@
     }
 
     updatePhysics(delta) {
-      const arenaHeight = this.arenaEl ? this.arenaEl.clientHeight : 400;
+      const arenaHeight = this.arenaEl ? this.arenaEl.clientHeight : 440;
       const hitLineY = arenaHeight - 75; // ranh giới căn cứ
 
       for (let i = this.fallingWords.length - 1; i >= 0; i--) {
@@ -619,7 +625,7 @@
             Tốc độ: <strong>${this.wpmEl ? this.wpmEl.textContent : '0 WPM'}</strong>
           </p>
           <div class="d-flex justify-center gap-3">
-            <button class="btn btn--primary typing-restart-btn font-bold">
+            <button class="btn btn--primary typing-restart-btn font-bold" style="cursor: pointer; z-index: 40;">
               🔄 Chơi Lại Ngay
             </button>
           </div>
@@ -627,19 +633,66 @@
 
         const restartBtn = this.dialogEl.querySelector('.typing-restart-btn');
         if (restartBtn) {
-          restartBtn.addEventListener('click', () => this.startGame());
+          restartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.startGame();
+          });
         }
       }
     }
   }
 
-  // Khởi tạo tự động khi trang tải xong
-  document.addEventListener('DOMContentLoaded', () => {
-    const containers = document.querySelectorAll('.typing-game-container');
-    containers.forEach(c => {
-      window.TypingShooter = new TypingShooterGame(c);
-    });
-  });
+  // Helper khởi tạo toàn cục bảo đảm không bao giờ lỗi
+  function initTypingShooter(container) {
+    if (!container) {
+      container = document.querySelector('.typing-game-container');
+    }
+    if (!container) return null;
 
+    if (!container._typingShooterInstance) {
+      container._typingShooterInstance = new TypingShooterGame(container);
+      window.TypingShooter = container._typingShooterInstance;
+    }
+    return container._typingShooterInstance;
+  }
+
+  function autoInitAll() {
+    document.querySelectorAll('.typing-game-container').forEach(c => {
+      initTypingShooter(c);
+    });
+  }
+
+  // Bắt sự kiện click toàn cục (Event Delegation) dùng useCapture để KHÔNG BAO GIỜ bị chặn
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.typing-start-btn, .typing-restart-btn');
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const container = btn.closest('.typing-game-container') || document.querySelector('.typing-game-container');
+      if (container) {
+        const game = initTypingShooter(container);
+        if (game) {
+          game.startGame();
+        }
+      }
+    }
+  }, true);
+
+  // Khởi tạo ở mọi thời điểm
+  document.addEventListener('DOMContentLoaded', autoInitAll);
+  window.addEventListener('load', autoInitAll);
+
+  // Quan sát DOM để tự nạp ngay khi LearningEngine render xong
+  if (typeof MutationObserver !== 'undefined') {
+    const observer = new MutationObserver(() => {
+      const c = document.querySelector('.typing-game-container');
+      if (c && !c._typingShooterInstance) {
+        autoInitAll();
+      }
+    });
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+  }
+
+  window.initTypingShooter = initTypingShooter;
   window.TypingShooterGame = TypingShooterGame;
 })();

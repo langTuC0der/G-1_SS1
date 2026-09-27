@@ -659,7 +659,20 @@
                   <p class="text-secondary" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
                     Hãy đặt tay lên 2 phím gai <strong>F và J</strong> trên hàng Home Row. Khi thiên thạch rơi xuống, em chỉ cần gõ đúng ký tự đầu tiên để nòng pháo tự động bắn la-de!
                   </p>
-                  <button class="btn btn--energy font-bold typing-start-btn" style="padding: 12px 32px; font-size: 1.1rem;">
+                  <button 
+                    type="button"
+                    class="btn btn--energy font-bold typing-start-btn" 
+                    style="padding: 12px 32px; font-size: 1.1rem; cursor: pointer; position: relative; z-index: 50;"
+                    onclick="
+                      const c = this.closest('.typing-game-container');
+                      if (window.initTypingShooter) {
+                        const g = window.initTypingShooter(c);
+                        if (g) g.startGame();
+                      } else if (window.TypingShooter) {
+                        window.TypingShooter.startGame();
+                      }
+                    "
+                  >
                     ⚡ BẮT ĐẦU CHIẾN DỊCH!
                   </button>
                 </div>
